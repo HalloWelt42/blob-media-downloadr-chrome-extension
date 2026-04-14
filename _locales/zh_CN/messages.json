@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "从任何网站捕获以 blob URL 形式提供的音频、视频、图片和文档，包括 MediaSource 流。"
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "尚未捕获任何 blob。"
+  },
+  "popupEmptyHint": {
+    "message": "在此页面上打开或播放媒体文件。blob 会自动出现在这里。"
+  },
+  "popupBtnRefresh": {
+    "message": "刷新"
+  },
+  "popupBtnOptions": {
+    "message": "选项"
+  },
+  "popupBtnClear": {
+    "message": "清空列表"
+  },
+  "filterAll": {
+    "message": "全部"
+  },
+  "filterAudio": {
+    "message": "音频"
+  },
+  "filterVideo": {
+    "message": "视频"
+  },
+  "filterImage": {
+    "message": "图片"
+  },
+  "filterDocument": {
+    "message": "文档"
+  },
+  "filterOther": {
+    "message": "其他"
+  },
+  "listSource": {
+    "message": "来源"
+  },
+  "listSize": {
+    "message": "大小"
+  },
+  "listDownload": {
+    "message": "下载"
+  },
+  "listRemove": {
+    "message": "移除"
+  },
+  "listCapturedAt": {
+    "message": "捕获时间"
+  },
+  "listLive": {
+    "message": "直播"
+  },
+  "listFinal": {
+    "message": "就绪"
+  },
+  "listMseLabel": {
+    "message": "流"
+  },
+  "listUnknownTitle": {
+    "message": "无标题页面"
+  },
+  "tooltipRefresh": {
+    "message": "刷新列表"
+  },
+  "tooltipOptions": {
+    "message": "打开选项"
+  },
+  "tooltipClear": {
+    "message": "移除所有捕获的 blob"
+  },
+  "tooltipDownload": {
+    "message": "下载此 blob"
+  },
+  "tooltipRemove": {
+    "message": "从列表中移除"
+  },
+  "tooltipDonate": {
+    "message": "致谢"
+  },
+  "tooltipGithub": {
+    "message": "GitHub 上的项目"
+  },
+  "toastDownloadStarted": {
+    "message": "已开始下载"
+  },
+  "toastSourceGone": {
+    "message": "来源标签页不再可用"
+  },
+  "toastCleared": {
+    "message": "列表已清空"
+  },
+  "toastRemoved": {
+    "message": "条目已移除"
+  },
+  "toastMseNotReady": {
+    "message": "流仍在进行中，将下载当前缓冲区"
+  },
+  "optionsTitle": {
+    "message": "选项"
+  },
+  "optionsSectionFilename": {
+    "message": "文件名"
+  },
+  "optionsFilenamePattern": {
+    "message": "文件名模式"
+  },
+  "optionsFilenameHint": {
+    "message": "可用令牌: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "自动下载"
+  },
+  "optionsAutoDownload": {
+    "message": "自动下载捕获的 blob"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "关闭"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "所有类型"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "仅选定类型"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "自动下载的最小大小 (KB)"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "仅在结束后下载 MediaSource 流"
+  },
+  "optionsTypeAudio": {
+    "message": "音频"
+  },
+  "optionsTypeVideo": {
+    "message": "视频"
+  },
+  "optionsTypeImage": {
+    "message": "图片"
+  },
+  "optionsTypeDocument": {
+    "message": "文档"
+  },
+  "optionsSectionHosts": {
+    "message": "主机规则"
+  },
+  "optionsHostWhitelist": {
+    "message": "仅在这些主机上捕获（每行一个，空 = 全部）"
+  },
+  "optionsHostBlacklist": {
+    "message": "永远不在这些主机上捕获（每行一个）"
+  },
+  "optionsSaveBtn": {
+    "message": "保存"
+  },
+  "optionsResetBtn": {
+    "message": "重置"
+  },
+  "optionsSavedToast": {
+    "message": "设置已保存"
+  },
+  "optionsResetToast": {
+    "message": "设置已重置"
+  },
+  "aboutPrivacy": {
+    "message": "隐私"
+  },
+  "aboutSource": {
+    "message": "GitHub 上的源代码"
+  },
+  "donateTitle": {
+    "message": "致谢"
+  },
+  "donateHeaderTitle": {
+    "message": "在萨克森-安哈尔特用爱制作"
+  },
+  "donateIntro": {
+    "message": "如果这个扩展节省了你的时间，一点小费可以帮助维护它。没有跟踪，没有遥测 -- 只有感谢。"
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- 请喝咖啡"
+  },
+  "donateOrByCrypto": {
+    "message": "或通过加密货币："
+  },
+  "donateCopyAddress": {
+    "message": "复制地址"
+  },
+  "donateCopied": {
+    "message": "已复制"
+  },
+  "donateThanks": {
+    "message": "非常感谢 -- 保持好奇。"
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "流"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

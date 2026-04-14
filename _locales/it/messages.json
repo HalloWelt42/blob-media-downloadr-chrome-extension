@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Cattura audio, video, immagini e documenti serviti come blob URL da qualsiasi sito, inclusi flussi MediaSource."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Nessun blob catturato finora."
+  },
+  "popupEmptyHint": {
+    "message": "Apri o riproduci un file multimediale su questa pagina. I blob appariranno qui automaticamente."
+  },
+  "popupBtnRefresh": {
+    "message": "Aggiorna"
+  },
+  "popupBtnOptions": {
+    "message": "Opzioni"
+  },
+  "popupBtnClear": {
+    "message": "Svuota lista"
+  },
+  "filterAll": {
+    "message": "Tutti"
+  },
+  "filterAudio": {
+    "message": "Audio"
+  },
+  "filterVideo": {
+    "message": "Video"
+  },
+  "filterImage": {
+    "message": "Immagine"
+  },
+  "filterDocument": {
+    "message": "Documento"
+  },
+  "filterOther": {
+    "message": "Altro"
+  },
+  "listSource": {
+    "message": "Origine"
+  },
+  "listSize": {
+    "message": "Dimensione"
+  },
+  "listDownload": {
+    "message": "Scarica"
+  },
+  "listRemove": {
+    "message": "Rimuovi"
+  },
+  "listCapturedAt": {
+    "message": "Catturato"
+  },
+  "listLive": {
+    "message": "In diretta"
+  },
+  "listFinal": {
+    "message": "Pronto"
+  },
+  "listMseLabel": {
+    "message": "Stream"
+  },
+  "listUnknownTitle": {
+    "message": "Pagina senza titolo"
+  },
+  "tooltipRefresh": {
+    "message": "Aggiorna lista"
+  },
+  "tooltipOptions": {
+    "message": "Apri opzioni"
+  },
+  "tooltipClear": {
+    "message": "Rimuovi tutti i blob catturati"
+  },
+  "tooltipDownload": {
+    "message": "Scarica questo blob"
+  },
+  "tooltipRemove": {
+    "message": "Rimuovi dalla lista"
+  },
+  "tooltipDonate": {
+    "message": "Ringraziare"
+  },
+  "tooltipGithub": {
+    "message": "Progetto su GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "Download avviato"
+  },
+  "toastSourceGone": {
+    "message": "La scheda di origine non è più disponibile"
+  },
+  "toastCleared": {
+    "message": "Lista svuotata"
+  },
+  "toastRemoved": {
+    "message": "Voce rimossa"
+  },
+  "toastMseNotReady": {
+    "message": "Lo stream è ancora attivo, verrà scaricato il buffer corrente"
+  },
+  "optionsTitle": {
+    "message": "Opzioni"
+  },
+  "optionsSectionFilename": {
+    "message": "Nome file"
+  },
+  "optionsFilenamePattern": {
+    "message": "Modello del nome file"
+  },
+  "optionsFilenameHint": {
+    "message": "Variabili disponibili: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Download automatico"
+  },
+  "optionsAutoDownload": {
+    "message": "Scarica automaticamente i blob catturati"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Disattivato"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Tutti i tipi"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Solo tipi selezionati"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Dimensione minima (KB) per download automatico"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "Scarica stream MediaSource solo al termine"
+  },
+  "optionsTypeAudio": {
+    "message": "Audio"
+  },
+  "optionsTypeVideo": {
+    "message": "Video"
+  },
+  "optionsTypeImage": {
+    "message": "Immagine"
+  },
+  "optionsTypeDocument": {
+    "message": "Documento"
+  },
+  "optionsSectionHosts": {
+    "message": "Regole degli host"
+  },
+  "optionsHostWhitelist": {
+    "message": "Cattura solo su questi host (uno per riga, vuoto = tutti)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Non catturare mai su questi host (uno per riga)"
+  },
+  "optionsSaveBtn": {
+    "message": "Salva"
+  },
+  "optionsResetBtn": {
+    "message": "Ripristina"
+  },
+  "optionsSavedToast": {
+    "message": "Impostazioni salvate"
+  },
+  "optionsResetToast": {
+    "message": "Impostazioni ripristinate"
+  },
+  "aboutPrivacy": {
+    "message": "Privacy"
+  },
+  "aboutSource": {
+    "message": "Codice sorgente su GitHub"
+  },
+  "donateTitle": {
+    "message": "Ringraziare"
+  },
+  "donateHeaderTitle": {
+    "message": "Realizzato con amore in Sassonia-Anhalt"
+  },
+  "donateIntro": {
+    "message": "Se questa estensione ti ha fatto risparmiare tempo, una piccola mancia aiuta a mantenerla. Nessun tracking, nessuna telemetria."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- offri un caffè"
+  },
+  "donateOrByCrypto": {
+    "message": "O tramite cripto:"
+  },
+  "donateCopyAddress": {
+    "message": "Copia indirizzo"
+  },
+  "donateCopied": {
+    "message": "Copiato"
+  },
+  "donateThanks": {
+    "message": "Grazie mille -- resta curioso."
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Stream"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

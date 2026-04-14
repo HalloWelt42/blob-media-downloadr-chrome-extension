@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Herhangi bir sitede blob URL olarak sunulan ses, video, görsel ve belgeleri yakalayın; MediaSource akışları dahil."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Henüz hiç blob yakalanmadı."
+  },
+  "popupEmptyHint": {
+    "message": "Bu sayfada bir medya dosyasını açın veya oynatın. Bloblar burada otomatik olarak görünür."
+  },
+  "popupBtnRefresh": {
+    "message": "Yenile"
+  },
+  "popupBtnOptions": {
+    "message": "Seçenekler"
+  },
+  "popupBtnClear": {
+    "message": "Listeyi temizle"
+  },
+  "filterAll": {
+    "message": "Tümü"
+  },
+  "filterAudio": {
+    "message": "Ses"
+  },
+  "filterVideo": {
+    "message": "Video"
+  },
+  "filterImage": {
+    "message": "Görsel"
+  },
+  "filterDocument": {
+    "message": "Belge"
+  },
+  "filterOther": {
+    "message": "Diğer"
+  },
+  "listSource": {
+    "message": "Kaynak"
+  },
+  "listSize": {
+    "message": "Boyut"
+  },
+  "listDownload": {
+    "message": "İndir"
+  },
+  "listRemove": {
+    "message": "Kaldır"
+  },
+  "listCapturedAt": {
+    "message": "Yakalandı"
+  },
+  "listLive": {
+    "message": "Canlı"
+  },
+  "listFinal": {
+    "message": "Hazır"
+  },
+  "listMseLabel": {
+    "message": "Akış"
+  },
+  "listUnknownTitle": {
+    "message": "Başlıksız sayfa"
+  },
+  "tooltipRefresh": {
+    "message": "Listeyi yenile"
+  },
+  "tooltipOptions": {
+    "message": "Seçenekleri aç"
+  },
+  "tooltipClear": {
+    "message": "Yakalanan tüm blobları kaldır"
+  },
+  "tooltipDownload": {
+    "message": "Bu blobu indir"
+  },
+  "tooltipRemove": {
+    "message": "Listeden kaldır"
+  },
+  "tooltipDonate": {
+    "message": "Teşekkür et"
+  },
+  "tooltipGithub": {
+    "message": "GitHub'daki proje"
+  },
+  "toastDownloadStarted": {
+    "message": "İndirme başlatıldı"
+  },
+  "toastSourceGone": {
+    "message": "Kaynak sekme artık kullanılamıyor"
+  },
+  "toastCleared": {
+    "message": "Liste temizlendi"
+  },
+  "toastRemoved": {
+    "message": "Giriş kaldırıldı"
+  },
+  "toastMseNotReady": {
+    "message": "Akış sürüyor, mevcut tampon indirilecek"
+  },
+  "optionsTitle": {
+    "message": "Seçenekler"
+  },
+  "optionsSectionFilename": {
+    "message": "Dosya adı"
+  },
+  "optionsFilenamePattern": {
+    "message": "Dosya adı deseni"
+  },
+  "optionsFilenameHint": {
+    "message": "Kullanılabilir tokenler: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Otomatik indirme"
+  },
+  "optionsAutoDownload": {
+    "message": "Yakalanan blobları otomatik indir"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Kapalı"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Tüm türler"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Yalnızca seçili türler"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Otomatik indirme için minimum boyut (KB)"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "MediaSource akışlarını yalnızca bittiğinde indir"
+  },
+  "optionsTypeAudio": {
+    "message": "Ses"
+  },
+  "optionsTypeVideo": {
+    "message": "Video"
+  },
+  "optionsTypeImage": {
+    "message": "Görsel"
+  },
+  "optionsTypeDocument": {
+    "message": "Belge"
+  },
+  "optionsSectionHosts": {
+    "message": "Host kuralları"
+  },
+  "optionsHostWhitelist": {
+    "message": "Yalnızca bu hostlarda yakala (satır başına bir, boş = tümü)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Bu hostlarda asla yakalama (satır başına bir)"
+  },
+  "optionsSaveBtn": {
+    "message": "Kaydet"
+  },
+  "optionsResetBtn": {
+    "message": "Sıfırla"
+  },
+  "optionsSavedToast": {
+    "message": "Ayarlar kaydedildi"
+  },
+  "optionsResetToast": {
+    "message": "Ayarlar sıfırlandı"
+  },
+  "aboutPrivacy": {
+    "message": "Gizlilik"
+  },
+  "aboutSource": {
+    "message": "GitHub'daki kaynak kod"
+  },
+  "donateTitle": {
+    "message": "Teşekkür et"
+  },
+  "donateHeaderTitle": {
+    "message": "Saxony-Anhalt'ta sevgiyle yapıldı"
+  },
+  "donateIntro": {
+    "message": "Bu uzantı size zaman kazandırdıysa, küçük bir bahşiş onu canlı tutar. İzleme yok, telemetri yok -- sadece teşekkür."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- kahve ısmarla"
+  },
+  "donateOrByCrypto": {
+    "message": "Veya kripto ile:"
+  },
+  "donateCopyAddress": {
+    "message": "Adresi kopyala"
+  },
+  "donateCopied": {
+    "message": "Kopyalandı"
+  },
+  "donateThanks": {
+    "message": "Çok teşekkürler -- meraklı kalın."
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Akış"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

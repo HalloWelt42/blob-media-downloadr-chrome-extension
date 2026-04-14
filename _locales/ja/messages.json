@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "任意のサイトでblob URLとして提供される音声、動画、画像、文書を取得します。MediaSourceストリームにも対応。"
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "まだblobが取得されていません。"
+  },
+  "popupEmptyHint": {
+    "message": "このページでメディアファイルを開くか再生してください。blobはここに自動的に表示されます。"
+  },
+  "popupBtnRefresh": {
+    "message": "更新"
+  },
+  "popupBtnOptions": {
+    "message": "オプション"
+  },
+  "popupBtnClear": {
+    "message": "リストをクリア"
+  },
+  "filterAll": {
+    "message": "すべて"
+  },
+  "filterAudio": {
+    "message": "音声"
+  },
+  "filterVideo": {
+    "message": "動画"
+  },
+  "filterImage": {
+    "message": "画像"
+  },
+  "filterDocument": {
+    "message": "文書"
+  },
+  "filterOther": {
+    "message": "その他"
+  },
+  "listSource": {
+    "message": "ソース"
+  },
+  "listSize": {
+    "message": "サイズ"
+  },
+  "listDownload": {
+    "message": "ダウンロード"
+  },
+  "listRemove": {
+    "message": "削除"
+  },
+  "listCapturedAt": {
+    "message": "取得日時"
+  },
+  "listLive": {
+    "message": "ライブ"
+  },
+  "listFinal": {
+    "message": "完了"
+  },
+  "listMseLabel": {
+    "message": "ストリーム"
+  },
+  "listUnknownTitle": {
+    "message": "無題のページ"
+  },
+  "tooltipRefresh": {
+    "message": "リストを更新"
+  },
+  "tooltipOptions": {
+    "message": "オプションを開く"
+  },
+  "tooltipClear": {
+    "message": "取得したすべてのblobを削除"
+  },
+  "tooltipDownload": {
+    "message": "このblobをダウンロード"
+  },
+  "tooltipRemove": {
+    "message": "リストから削除"
+  },
+  "tooltipDonate": {
+    "message": "ありがとう"
+  },
+  "tooltipGithub": {
+    "message": "GitHubのプロジェクト"
+  },
+  "toastDownloadStarted": {
+    "message": "ダウンロードを開始しました"
+  },
+  "toastSourceGone": {
+    "message": "ソースタブは利用できなくなりました"
+  },
+  "toastCleared": {
+    "message": "リストをクリアしました"
+  },
+  "toastRemoved": {
+    "message": "項目を削除しました"
+  },
+  "toastMseNotReady": {
+    "message": "ストリームは継続中です。現在のバッファをダウンロードします"
+  },
+  "optionsTitle": {
+    "message": "オプション"
+  },
+  "optionsSectionFilename": {
+    "message": "ファイル名"
+  },
+  "optionsFilenamePattern": {
+    "message": "ファイル名パターン"
+  },
+  "optionsFilenameHint": {
+    "message": "利用可能なトークン: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "自動ダウンロード"
+  },
+  "optionsAutoDownload": {
+    "message": "取得したblobを自動的にダウンロード"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "オフ"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "すべての種類"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "選択した種類のみ"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "自動ダウンロードの最小サイズ (KB)"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "MediaSourceストリームは終了後のみダウンロード"
+  },
+  "optionsTypeAudio": {
+    "message": "音声"
+  },
+  "optionsTypeVideo": {
+    "message": "動画"
+  },
+  "optionsTypeImage": {
+    "message": "画像"
+  },
+  "optionsTypeDocument": {
+    "message": "文書"
+  },
+  "optionsSectionHosts": {
+    "message": "ホストルール"
+  },
+  "optionsHostWhitelist": {
+    "message": "このホストでのみ取得 (1行につき1つ、空欄 = すべて)"
+  },
+  "optionsHostBlacklist": {
+    "message": "このホストでは取得しない (1行につき1つ)"
+  },
+  "optionsSaveBtn": {
+    "message": "保存"
+  },
+  "optionsResetBtn": {
+    "message": "リセット"
+  },
+  "optionsSavedToast": {
+    "message": "設定を保存しました"
+  },
+  "optionsResetToast": {
+    "message": "設定をリセットしました"
+  },
+  "aboutPrivacy": {
+    "message": "プライバシー"
+  },
+  "aboutSource": {
+    "message": "GitHubのソースコード"
+  },
+  "donateTitle": {
+    "message": "ありがとう"
+  },
+  "donateHeaderTitle": {
+    "message": "ザクセン＝アンハルトで愛を込めて"
+  },
+  "donateIntro": {
+    "message": "この拡張機能で時間を節約できたなら、少額のチップがメンテナンスを支えます。トラッキングなし、テレメトリなし。"
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- コーヒーをおごる"
+  },
+  "donateOrByCrypto": {
+    "message": "または暗号通貨で:"
+  },
+  "donateCopyAddress": {
+    "message": "アドレスをコピー"
+  },
+  "donateCopied": {
+    "message": "コピーしました"
+  },
+  "donateThanks": {
+    "message": "どうもありがとう -- 好奇心を忘れずに。"
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "ストリーム"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

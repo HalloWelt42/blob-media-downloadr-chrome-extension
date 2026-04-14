@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "จับ blob URL ของเสียง วิดีโอ รูปภาพ และเอกสารจากเว็บไซต์ใดก็ได้ รวมถึงสตรีม MediaSource"
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "ยังไม่มี blob ที่จับได้"
+  },
+  "popupEmptyHint": {
+    "message": "เปิดหรือเล่นไฟล์สื่อในหน้านี้ blob จะปรากฏที่นี่โดยอัตโนมัติ"
+  },
+  "popupBtnRefresh": {
+    "message": "รีเฟรช"
+  },
+  "popupBtnOptions": {
+    "message": "ตัวเลือก"
+  },
+  "popupBtnClear": {
+    "message": "ล้างรายการ"
+  },
+  "filterAll": {
+    "message": "ทั้งหมด"
+  },
+  "filterAudio": {
+    "message": "เสียง"
+  },
+  "filterVideo": {
+    "message": "วิดีโอ"
+  },
+  "filterImage": {
+    "message": "รูปภาพ"
+  },
+  "filterDocument": {
+    "message": "เอกสาร"
+  },
+  "filterOther": {
+    "message": "อื่น ๆ"
+  },
+  "listSource": {
+    "message": "แหล่งที่มา"
+  },
+  "listSize": {
+    "message": "ขนาด"
+  },
+  "listDownload": {
+    "message": "ดาวน์โหลด"
+  },
+  "listRemove": {
+    "message": "ลบ"
+  },
+  "listCapturedAt": {
+    "message": "จับเมื่อ"
+  },
+  "listLive": {
+    "message": "สด"
+  },
+  "listFinal": {
+    "message": "พร้อม"
+  },
+  "listMseLabel": {
+    "message": "สตรีม"
+  },
+  "listUnknownTitle": {
+    "message": "หน้าไม่มีชื่อ"
+  },
+  "tooltipRefresh": {
+    "message": "รีเฟรชรายการ"
+  },
+  "tooltipOptions": {
+    "message": "เปิดตัวเลือก"
+  },
+  "tooltipClear": {
+    "message": "ลบ blob ที่จับได้ทั้งหมด"
+  },
+  "tooltipDownload": {
+    "message": "ดาวน์โหลด blob นี้"
+  },
+  "tooltipRemove": {
+    "message": "ลบออกจากรายการ"
+  },
+  "tooltipDonate": {
+    "message": "ขอบคุณ"
+  },
+  "tooltipGithub": {
+    "message": "โครงการบน GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "เริ่มดาวน์โหลดแล้ว"
+  },
+  "toastSourceGone": {
+    "message": "แท็บต้นทางไม่พร้อมใช้งานแล้ว"
+  },
+  "toastCleared": {
+    "message": "ล้างรายการแล้ว"
+  },
+  "toastRemoved": {
+    "message": "ลบรายการแล้ว"
+  },
+  "toastMseNotReady": {
+    "message": "สตรีมยังทำงานอยู่ จะดาวน์โหลดบัฟเฟอร์ปัจจุบัน"
+  },
+  "optionsTitle": {
+    "message": "ตัวเลือก"
+  },
+  "optionsSectionFilename": {
+    "message": "ชื่อไฟล์"
+  },
+  "optionsFilenamePattern": {
+    "message": "รูปแบบชื่อไฟล์"
+  },
+  "optionsFilenameHint": {
+    "message": "โทเคนที่ใช้ได้: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "ดาวน์โหลดอัตโนมัติ"
+  },
+  "optionsAutoDownload": {
+    "message": "ดาวน์โหลด blob ที่จับได้โดยอัตโนมัติ"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "ปิด"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "ทุกประเภท"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "เฉพาะประเภทที่เลือก"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "ขนาดขั้นต่ำ (KB) สำหรับดาวน์โหลดอัตโนมัติ"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "ดาวน์โหลดสตรีม MediaSource เฉพาะเมื่อสิ้นสุด"
+  },
+  "optionsTypeAudio": {
+    "message": "เสียง"
+  },
+  "optionsTypeVideo": {
+    "message": "วิดีโอ"
+  },
+  "optionsTypeImage": {
+    "message": "รูปภาพ"
+  },
+  "optionsTypeDocument": {
+    "message": "เอกสาร"
+  },
+  "optionsSectionHosts": {
+    "message": "กฎของโฮสต์"
+  },
+  "optionsHostWhitelist": {
+    "message": "จับเฉพาะโฮสต์เหล่านี้ (บรรทัดละหนึ่ง เว้นว่าง = ทั้งหมด)"
+  },
+  "optionsHostBlacklist": {
+    "message": "ห้ามจับที่โฮสต์เหล่านี้ (บรรทัดละหนึ่ง)"
+  },
+  "optionsSaveBtn": {
+    "message": "บันทึก"
+  },
+  "optionsResetBtn": {
+    "message": "รีเซ็ต"
+  },
+  "optionsSavedToast": {
+    "message": "บันทึกการตั้งค่าแล้ว"
+  },
+  "optionsResetToast": {
+    "message": "รีเซ็ตการตั้งค่าแล้ว"
+  },
+  "aboutPrivacy": {
+    "message": "ความเป็นส่วนตัว"
+  },
+  "aboutSource": {
+    "message": "ซอร์สโค้ดบน GitHub"
+  },
+  "donateTitle": {
+    "message": "ขอบคุณ"
+  },
+  "donateHeaderTitle": {
+    "message": "ทำด้วยรักในแซกโซนี-อันฮัลท์"
+  },
+  "donateIntro": {
+    "message": "หากส่วนขยายนี้ช่วยคุณประหยัดเวลา ทิปเล็ก ๆ จะช่วยรักษาให้ใช้งานได้ต่อไป ไม่มีการติดตาม ไม่มีการเก็บข้อมูล"
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- เลี้ยงกาแฟ"
+  },
+  "donateOrByCrypto": {
+    "message": "หรือผ่านคริปโต:"
+  },
+  "donateCopyAddress": {
+    "message": "คัดลอกที่อยู่"
+  },
+  "donateCopied": {
+    "message": "คัดลอกแล้ว"
+  },
+  "donateThanks": {
+    "message": "ขอบคุณมาก -- จงเป็นคนอยากรู้อยากเห็นต่อไป"
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "สตรีม"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

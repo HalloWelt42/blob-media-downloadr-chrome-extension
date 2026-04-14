@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Tangkap audio, video, gambar, dan dokumen yang disajikan sebagai blob URL di situs mana pun, termasuk stream MediaSource."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Belum ada blob yang ditangkap."
+  },
+  "popupEmptyHint": {
+    "message": "Buka atau putar berkas media di halaman ini. Blob akan muncul di sini secara otomatis."
+  },
+  "popupBtnRefresh": {
+    "message": "Muat ulang"
+  },
+  "popupBtnOptions": {
+    "message": "Opsi"
+  },
+  "popupBtnClear": {
+    "message": "Bersihkan daftar"
+  },
+  "filterAll": {
+    "message": "Semua"
+  },
+  "filterAudio": {
+    "message": "Audio"
+  },
+  "filterVideo": {
+    "message": "Video"
+  },
+  "filterImage": {
+    "message": "Gambar"
+  },
+  "filterDocument": {
+    "message": "Dokumen"
+  },
+  "filterOther": {
+    "message": "Lainnya"
+  },
+  "listSource": {
+    "message": "Sumber"
+  },
+  "listSize": {
+    "message": "Ukuran"
+  },
+  "listDownload": {
+    "message": "Unduh"
+  },
+  "listRemove": {
+    "message": "Hapus"
+  },
+  "listCapturedAt": {
+    "message": "Ditangkap"
+  },
+  "listLive": {
+    "message": "Langsung"
+  },
+  "listFinal": {
+    "message": "Siap"
+  },
+  "listMseLabel": {
+    "message": "Stream"
+  },
+  "listUnknownTitle": {
+    "message": "Halaman tanpa judul"
+  },
+  "tooltipRefresh": {
+    "message": "Muat ulang daftar"
+  },
+  "tooltipOptions": {
+    "message": "Buka opsi"
+  },
+  "tooltipClear": {
+    "message": "Hapus semua blob yang ditangkap"
+  },
+  "tooltipDownload": {
+    "message": "Unduh blob ini"
+  },
+  "tooltipRemove": {
+    "message": "Hapus dari daftar"
+  },
+  "tooltipDonate": {
+    "message": "Beri terima kasih"
+  },
+  "tooltipGithub": {
+    "message": "Proyek di GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "Unduhan dimulai"
+  },
+  "toastSourceGone": {
+    "message": "Tab sumber tidak lagi tersedia"
+  },
+  "toastCleared": {
+    "message": "Daftar dibersihkan"
+  },
+  "toastRemoved": {
+    "message": "Entri dihapus"
+  },
+  "toastMseNotReady": {
+    "message": "Stream masih berjalan, buffer saat ini akan diunduh"
+  },
+  "optionsTitle": {
+    "message": "Opsi"
+  },
+  "optionsSectionFilename": {
+    "message": "Nama berkas"
+  },
+  "optionsFilenamePattern": {
+    "message": "Pola nama berkas"
+  },
+  "optionsFilenameHint": {
+    "message": "Token yang tersedia: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Unduh otomatis"
+  },
+  "optionsAutoDownload": {
+    "message": "Unduh blob yang ditangkap secara otomatis"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Nonaktif"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Semua tipe"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Hanya tipe terpilih"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Ukuran minimum (KB) untuk unduh otomatis"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "Unduh stream MediaSource hanya setelah selesai"
+  },
+  "optionsTypeAudio": {
+    "message": "Audio"
+  },
+  "optionsTypeVideo": {
+    "message": "Video"
+  },
+  "optionsTypeImage": {
+    "message": "Gambar"
+  },
+  "optionsTypeDocument": {
+    "message": "Dokumen"
+  },
+  "optionsSectionHosts": {
+    "message": "Aturan host"
+  },
+  "optionsHostWhitelist": {
+    "message": "Tangkap hanya di host ini (satu per baris, kosong = semua)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Jangan pernah tangkap di host ini (satu per baris)"
+  },
+  "optionsSaveBtn": {
+    "message": "Simpan"
+  },
+  "optionsResetBtn": {
+    "message": "Atur ulang"
+  },
+  "optionsSavedToast": {
+    "message": "Pengaturan disimpan"
+  },
+  "optionsResetToast": {
+    "message": "Pengaturan diatur ulang"
+  },
+  "aboutPrivacy": {
+    "message": "Privasi"
+  },
+  "aboutSource": {
+    "message": "Kode sumber di GitHub"
+  },
+  "donateTitle": {
+    "message": "Beri terima kasih"
+  },
+  "donateHeaderTitle": {
+    "message": "Dibuat dengan cinta di Saxony-Anhalt"
+  },
+  "donateIntro": {
+    "message": "Jika ekstensi ini menghemat waktu Anda, tip kecil membantu pemeliharaannya. Tanpa pelacakan, tanpa telemetri."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- traktir kopi"
+  },
+  "donateOrByCrypto": {
+    "message": "Atau lewat kripto:"
+  },
+  "donateCopyAddress": {
+    "message": "Salin alamat"
+  },
+  "donateCopied": {
+    "message": "Disalin"
+  },
+  "donateThanks": {
+    "message": "Terima kasih banyak -- tetap penasaran."
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Stream"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

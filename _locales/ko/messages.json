@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "모든 웹사이트에서 blob URL로 제공되는 오디오, 비디오, 이미지, 문서를 캡처합니다. MediaSource 스트림 포함."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "아직 캡처된 blob이 없습니다."
+  },
+  "popupEmptyHint": {
+    "message": "이 페이지에서 미디어 파일을 열거나 재생하세요. blob이 여기에 자동으로 나타납니다."
+  },
+  "popupBtnRefresh": {
+    "message": "새로고침"
+  },
+  "popupBtnOptions": {
+    "message": "옵션"
+  },
+  "popupBtnClear": {
+    "message": "목록 지우기"
+  },
+  "filterAll": {
+    "message": "전체"
+  },
+  "filterAudio": {
+    "message": "오디오"
+  },
+  "filterVideo": {
+    "message": "비디오"
+  },
+  "filterImage": {
+    "message": "이미지"
+  },
+  "filterDocument": {
+    "message": "문서"
+  },
+  "filterOther": {
+    "message": "기타"
+  },
+  "listSource": {
+    "message": "출처"
+  },
+  "listSize": {
+    "message": "크기"
+  },
+  "listDownload": {
+    "message": "다운로드"
+  },
+  "listRemove": {
+    "message": "제거"
+  },
+  "listCapturedAt": {
+    "message": "캡처 시간"
+  },
+  "listLive": {
+    "message": "실시간"
+  },
+  "listFinal": {
+    "message": "준비됨"
+  },
+  "listMseLabel": {
+    "message": "스트림"
+  },
+  "listUnknownTitle": {
+    "message": "제목 없는 페이지"
+  },
+  "tooltipRefresh": {
+    "message": "목록 새로고침"
+  },
+  "tooltipOptions": {
+    "message": "옵션 열기"
+  },
+  "tooltipClear": {
+    "message": "캡처된 모든 blob 제거"
+  },
+  "tooltipDownload": {
+    "message": "이 blob 다운로드"
+  },
+  "tooltipRemove": {
+    "message": "목록에서 제거"
+  },
+  "tooltipDonate": {
+    "message": "감사 인사"
+  },
+  "tooltipGithub": {
+    "message": "GitHub의 프로젝트"
+  },
+  "toastDownloadStarted": {
+    "message": "다운로드를 시작했습니다"
+  },
+  "toastSourceGone": {
+    "message": "원본 탭을 더 이상 사용할 수 없습니다"
+  },
+  "toastCleared": {
+    "message": "목록이 지워졌습니다"
+  },
+  "toastRemoved": {
+    "message": "항목이 제거되었습니다"
+  },
+  "toastMseNotReady": {
+    "message": "스트림이 아직 진행 중이며 현재 버퍼가 다운로드됩니다"
+  },
+  "optionsTitle": {
+    "message": "옵션"
+  },
+  "optionsSectionFilename": {
+    "message": "파일 이름"
+  },
+  "optionsFilenamePattern": {
+    "message": "파일 이름 패턴"
+  },
+  "optionsFilenameHint": {
+    "message": "사용 가능한 토큰: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "자동 다운로드"
+  },
+  "optionsAutoDownload": {
+    "message": "캡처된 blob을 자동으로 다운로드"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "꺼짐"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "모든 유형"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "선택한 유형만"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "자동 다운로드 최소 크기 (KB)"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "MediaSource 스트림은 종료 후에만 다운로드"
+  },
+  "optionsTypeAudio": {
+    "message": "오디오"
+  },
+  "optionsTypeVideo": {
+    "message": "비디오"
+  },
+  "optionsTypeImage": {
+    "message": "이미지"
+  },
+  "optionsTypeDocument": {
+    "message": "문서"
+  },
+  "optionsSectionHosts": {
+    "message": "호스트 규칙"
+  },
+  "optionsHostWhitelist": {
+    "message": "이 호스트에서만 캡처 (한 줄에 하나, 비워두면 모두)"
+  },
+  "optionsHostBlacklist": {
+    "message": "이 호스트에서는 절대 캡처하지 않음 (한 줄에 하나)"
+  },
+  "optionsSaveBtn": {
+    "message": "저장"
+  },
+  "optionsResetBtn": {
+    "message": "초기화"
+  },
+  "optionsSavedToast": {
+    "message": "설정이 저장되었습니다"
+  },
+  "optionsResetToast": {
+    "message": "설정이 초기화되었습니다"
+  },
+  "aboutPrivacy": {
+    "message": "개인정보처리방침"
+  },
+  "aboutSource": {
+    "message": "GitHub의 소스 코드"
+  },
+  "donateTitle": {
+    "message": "감사 인사"
+  },
+  "donateHeaderTitle": {
+    "message": "작센-안할트에서 사랑으로 만들어졌습니다"
+  },
+  "donateIntro": {
+    "message": "이 확장 프로그램이 시간을 절약해 드렸다면 작은 팁이 유지 관리에 도움이 됩니다. 추적 없음, 원격 측정 없음."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- 커피 한 잔"
+  },
+  "donateOrByCrypto": {
+    "message": "또는 암호화폐로:"
+  },
+  "donateCopyAddress": {
+    "message": "주소 복사"
+  },
+  "donateCopied": {
+    "message": "복사됨"
+  },
+  "donateThanks": {
+    "message": "대단히 감사합니다 -- 호기심을 잃지 마세요."
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "스트림"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

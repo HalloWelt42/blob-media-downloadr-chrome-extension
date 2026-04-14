@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "التقاط الصوت والفيديو والصور والمستندات المقدّمة كعناوين blob من أي موقع، بما في ذلك تدفقات MediaSource."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "لم يتم التقاط أي كائنات blob بعد."
+  },
+  "popupEmptyHint": {
+    "message": "افتح أو شغّل ملف وسائط على هذه الصفحة. ستظهر الـ blob هنا تلقائياً."
+  },
+  "popupBtnRefresh": {
+    "message": "تحديث"
+  },
+  "popupBtnOptions": {
+    "message": "الخيارات"
+  },
+  "popupBtnClear": {
+    "message": "مسح القائمة"
+  },
+  "filterAll": {
+    "message": "الكل"
+  },
+  "filterAudio": {
+    "message": "صوت"
+  },
+  "filterVideo": {
+    "message": "فيديو"
+  },
+  "filterImage": {
+    "message": "صورة"
+  },
+  "filterDocument": {
+    "message": "مستند"
+  },
+  "filterOther": {
+    "message": "أخرى"
+  },
+  "listSource": {
+    "message": "المصدر"
+  },
+  "listSize": {
+    "message": "الحجم"
+  },
+  "listDownload": {
+    "message": "تنزيل"
+  },
+  "listRemove": {
+    "message": "إزالة"
+  },
+  "listCapturedAt": {
+    "message": "التُقط"
+  },
+  "listLive": {
+    "message": "مباشر"
+  },
+  "listFinal": {
+    "message": "جاهز"
+  },
+  "listMseLabel": {
+    "message": "تدفق"
+  },
+  "listUnknownTitle": {
+    "message": "صفحة بلا عنوان"
+  },
+  "tooltipRefresh": {
+    "message": "تحديث القائمة"
+  },
+  "tooltipOptions": {
+    "message": "فتح الخيارات"
+  },
+  "tooltipClear": {
+    "message": "إزالة جميع كائنات blob الملتقطة"
+  },
+  "tooltipDownload": {
+    "message": "تنزيل هذا الـ blob"
+  },
+  "tooltipRemove": {
+    "message": "إزالة من القائمة"
+  },
+  "tooltipDonate": {
+    "message": "شكراً"
+  },
+  "tooltipGithub": {
+    "message": "المشروع على GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "بدأ التنزيل"
+  },
+  "toastSourceGone": {
+    "message": "علامة التبويب المصدر لم تعد متاحة"
+  },
+  "toastCleared": {
+    "message": "تم مسح القائمة"
+  },
+  "toastRemoved": {
+    "message": "تمت إزالة الإدخال"
+  },
+  "toastMseNotReady": {
+    "message": "التدفق لا يزال نشطاً، سيتم تنزيل المخزن المؤقت الحالي"
+  },
+  "optionsTitle": {
+    "message": "الخيارات"
+  },
+  "optionsSectionFilename": {
+    "message": "اسم الملف"
+  },
+  "optionsFilenamePattern": {
+    "message": "نمط اسم الملف"
+  },
+  "optionsFilenameHint": {
+    "message": "الرموز المتاحة: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "تنزيل تلقائي"
+  },
+  "optionsAutoDownload": {
+    "message": "تنزيل كائنات blob الملتقطة تلقائياً"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "إيقاف"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "جميع الأنواع"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "الأنواع المحددة فقط"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "الحد الأدنى للحجم (KB) للتنزيل التلقائي"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "تنزيل تدفقات MediaSource بعد انتهائها فقط"
+  },
+  "optionsTypeAudio": {
+    "message": "صوت"
+  },
+  "optionsTypeVideo": {
+    "message": "فيديو"
+  },
+  "optionsTypeImage": {
+    "message": "صورة"
+  },
+  "optionsTypeDocument": {
+    "message": "مستند"
+  },
+  "optionsSectionHosts": {
+    "message": "قواعد المضيف"
+  },
+  "optionsHostWhitelist": {
+    "message": "الالتقاط فقط على هذه المضيفات (واحد لكل سطر، فارغ = الجميع)"
+  },
+  "optionsHostBlacklist": {
+    "message": "عدم الالتقاط أبداً على هذه المضيفات (واحد لكل سطر)"
+  },
+  "optionsSaveBtn": {
+    "message": "حفظ"
+  },
+  "optionsResetBtn": {
+    "message": "إعادة الضبط"
+  },
+  "optionsSavedToast": {
+    "message": "تم حفظ الإعدادات"
+  },
+  "optionsResetToast": {
+    "message": "تمت إعادة ضبط الإعدادات"
+  },
+  "aboutPrivacy": {
+    "message": "الخصوصية"
+  },
+  "aboutSource": {
+    "message": "الشفرة المصدرية على GitHub"
+  },
+  "donateTitle": {
+    "message": "شكراً"
+  },
+  "donateHeaderTitle": {
+    "message": "صُنع بحب في ساكسونيا-أنهالت"
+  },
+  "donateIntro": {
+    "message": "إن وفّر عليك هذا الامتداد وقتاً، فإن إكرامية صغيرة تساعد في صيانته. بلا تتبع ولا تحليلات -- فقط امتنان."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- اشترِ قهوة"
+  },
+  "donateOrByCrypto": {
+    "message": "أو عبر العملات المشفرة:"
+  },
+  "donateCopyAddress": {
+    "message": "نسخ العنوان"
+  },
+  "donateCopied": {
+    "message": "تم النسخ"
+  },
+  "donateThanks": {
+    "message": "شكراً جزيلاً -- ابقَ فضولياً."
+  },
+  "unitBytes": {
+    "message": "ب"
+  },
+  "unitKilobytes": {
+    "message": "كب"
+  },
+  "unitMegabytes": {
+    "message": "مب"
+  },
+  "unitGigabytes": {
+    "message": "غب"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "تدفق"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

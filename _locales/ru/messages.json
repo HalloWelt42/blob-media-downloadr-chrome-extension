@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Захват аудио, видео, изображений и документов, отдаваемых как blob-URL на любом сайте, включая потоки MediaSource."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Блобы ещё не захвачены."
+  },
+  "popupEmptyHint": {
+    "message": "Откройте или воспроизведите медиафайл на этой странице. Блобы появятся здесь автоматически."
+  },
+  "popupBtnRefresh": {
+    "message": "Обновить"
+  },
+  "popupBtnOptions": {
+    "message": "Настройки"
+  },
+  "popupBtnClear": {
+    "message": "Очистить список"
+  },
+  "filterAll": {
+    "message": "Все"
+  },
+  "filterAudio": {
+    "message": "Аудио"
+  },
+  "filterVideo": {
+    "message": "Видео"
+  },
+  "filterImage": {
+    "message": "Изображение"
+  },
+  "filterDocument": {
+    "message": "Документ"
+  },
+  "filterOther": {
+    "message": "Прочее"
+  },
+  "listSource": {
+    "message": "Источник"
+  },
+  "listSize": {
+    "message": "Размер"
+  },
+  "listDownload": {
+    "message": "Скачать"
+  },
+  "listRemove": {
+    "message": "Удалить"
+  },
+  "listCapturedAt": {
+    "message": "Захвачено"
+  },
+  "listLive": {
+    "message": "В эфире"
+  },
+  "listFinal": {
+    "message": "Готово"
+  },
+  "listMseLabel": {
+    "message": "Поток"
+  },
+  "listUnknownTitle": {
+    "message": "Страница без названия"
+  },
+  "tooltipRefresh": {
+    "message": "Обновить список"
+  },
+  "tooltipOptions": {
+    "message": "Открыть настройки"
+  },
+  "tooltipClear": {
+    "message": "Удалить все захваченные блобы"
+  },
+  "tooltipDownload": {
+    "message": "Скачать этот блоб"
+  },
+  "tooltipRemove": {
+    "message": "Удалить из списка"
+  },
+  "tooltipDonate": {
+    "message": "Сказать спасибо"
+  },
+  "tooltipGithub": {
+    "message": "Проект на GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "Загрузка начата"
+  },
+  "toastSourceGone": {
+    "message": "Исходная вкладка больше не доступна"
+  },
+  "toastCleared": {
+    "message": "Список очищен"
+  },
+  "toastRemoved": {
+    "message": "Запись удалена"
+  },
+  "toastMseNotReady": {
+    "message": "Поток ещё идёт, будет загружен текущий буфер"
+  },
+  "optionsTitle": {
+    "message": "Настройки"
+  },
+  "optionsSectionFilename": {
+    "message": "Имя файла"
+  },
+  "optionsFilenamePattern": {
+    "message": "Шаблон имени файла"
+  },
+  "optionsFilenameHint": {
+    "message": "Доступные токены: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Автозагрузка"
+  },
+  "optionsAutoDownload": {
+    "message": "Автоматически скачивать захваченные блобы"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Выкл."
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Все типы"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Только выбранные типы"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Минимальный размер (КБ) для автозагрузки"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "Скачивать потоки MediaSource только после завершения"
+  },
+  "optionsTypeAudio": {
+    "message": "Аудио"
+  },
+  "optionsTypeVideo": {
+    "message": "Видео"
+  },
+  "optionsTypeImage": {
+    "message": "Изображение"
+  },
+  "optionsTypeDocument": {
+    "message": "Документ"
+  },
+  "optionsSectionHosts": {
+    "message": "Правила для хостов"
+  },
+  "optionsHostWhitelist": {
+    "message": "Захват только на этих хостах (по одному на строку, пусто = все)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Никогда не захватывать на этих хостах (по одному на строку)"
+  },
+  "optionsSaveBtn": {
+    "message": "Сохранить"
+  },
+  "optionsResetBtn": {
+    "message": "Сбросить"
+  },
+  "optionsSavedToast": {
+    "message": "Настройки сохранены"
+  },
+  "optionsResetToast": {
+    "message": "Настройки сброшены"
+  },
+  "aboutPrivacy": {
+    "message": "Конфиденциальность"
+  },
+  "aboutSource": {
+    "message": "Исходный код на GitHub"
+  },
+  "donateTitle": {
+    "message": "Сказать спасибо"
+  },
+  "donateHeaderTitle": {
+    "message": "С любовью сделано в Саксонии-Анхальт"
+  },
+  "donateIntro": {
+    "message": "Если это расширение сэкономило вам время, небольшая благодарность помогает поддерживать его. Без трекинга, без телеметрии."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- угостить кофе"
+  },
+  "donateOrByCrypto": {
+    "message": "Или через крипто:"
+  },
+  "donateCopyAddress": {
+    "message": "Скопировать адрес"
+  },
+  "donateCopied": {
+    "message": "Скопировано"
+  },
+  "donateThanks": {
+    "message": "Большое спасибо -- оставайтесь любознательными."
+  },
+  "unitBytes": {
+    "message": "Б"
+  },
+  "unitKilobytes": {
+    "message": "КБ"
+  },
+  "unitMegabytes": {
+    "message": "МБ"
+  },
+  "unitGigabytes": {
+    "message": "ГБ"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Поток"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Leg audio, video, afbeeldingen en documenten vast die als blob-URL worden geserveerd, inclusief MediaSource-streams."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Nog geen blobs vastgelegd."
+  },
+  "popupEmptyHint": {
+    "message": "Open of speel een mediabestand op deze pagina af. Blobs verschijnen hier automatisch."
+  },
+  "popupBtnRefresh": {
+    "message": "Vernieuwen"
+  },
+  "popupBtnOptions": {
+    "message": "Opties"
+  },
+  "popupBtnClear": {
+    "message": "Lijst wissen"
+  },
+  "filterAll": {
+    "message": "Alles"
+  },
+  "filterAudio": {
+    "message": "Audio"
+  },
+  "filterVideo": {
+    "message": "Video"
+  },
+  "filterImage": {
+    "message": "Afbeelding"
+  },
+  "filterDocument": {
+    "message": "Document"
+  },
+  "filterOther": {
+    "message": "Overig"
+  },
+  "listSource": {
+    "message": "Bron"
+  },
+  "listSize": {
+    "message": "Grootte"
+  },
+  "listDownload": {
+    "message": "Downloaden"
+  },
+  "listRemove": {
+    "message": "Verwijderen"
+  },
+  "listCapturedAt": {
+    "message": "Vastgelegd"
+  },
+  "listLive": {
+    "message": "Live"
+  },
+  "listFinal": {
+    "message": "Klaar"
+  },
+  "listMseLabel": {
+    "message": "Stream"
+  },
+  "listUnknownTitle": {
+    "message": "Naamloze pagina"
+  },
+  "tooltipRefresh": {
+    "message": "Lijst vernieuwen"
+  },
+  "tooltipOptions": {
+    "message": "Opties openen"
+  },
+  "tooltipClear": {
+    "message": "Alle vastgelegde blobs verwijderen"
+  },
+  "tooltipDownload": {
+    "message": "Deze blob downloaden"
+  },
+  "tooltipRemove": {
+    "message": "Uit lijst verwijderen"
+  },
+  "tooltipDonate": {
+    "message": "Bedankje"
+  },
+  "tooltipGithub": {
+    "message": "Project op GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "Download gestart"
+  },
+  "toastSourceGone": {
+    "message": "Brontabblad is niet meer beschikbaar"
+  },
+  "toastCleared": {
+    "message": "Lijst gewist"
+  },
+  "toastRemoved": {
+    "message": "Vermelding verwijderd"
+  },
+  "toastMseNotReady": {
+    "message": "Stream is nog bezig, huidige buffer wordt gedownload"
+  },
+  "optionsTitle": {
+    "message": "Opties"
+  },
+  "optionsSectionFilename": {
+    "message": "Bestandsnaam"
+  },
+  "optionsFilenamePattern": {
+    "message": "Patroon voor bestandsnaam"
+  },
+  "optionsFilenameHint": {
+    "message": "Beschikbare tokens: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Automatisch downloaden"
+  },
+  "optionsAutoDownload": {
+    "message": "Vastgelegde blobs automatisch downloaden"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Uit"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Alle typen"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Alleen geselecteerde typen"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Minimale grootte (KB) voor auto-download"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "MediaSource-streams pas na beëindiging downloaden"
+  },
+  "optionsTypeAudio": {
+    "message": "Audio"
+  },
+  "optionsTypeVideo": {
+    "message": "Video"
+  },
+  "optionsTypeImage": {
+    "message": "Afbeelding"
+  },
+  "optionsTypeDocument": {
+    "message": "Document"
+  },
+  "optionsSectionHosts": {
+    "message": "Hostregels"
+  },
+  "optionsHostWhitelist": {
+    "message": "Alleen vastleggen op deze hosts (één per regel, leeg = alles)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Nooit vastleggen op deze hosts (één per regel)"
+  },
+  "optionsSaveBtn": {
+    "message": "Opslaan"
+  },
+  "optionsResetBtn": {
+    "message": "Resetten"
+  },
+  "optionsSavedToast": {
+    "message": "Instellingen opgeslagen"
+  },
+  "optionsResetToast": {
+    "message": "Instellingen hersteld"
+  },
+  "aboutPrivacy": {
+    "message": "Privacy"
+  },
+  "aboutSource": {
+    "message": "Broncode op GitHub"
+  },
+  "donateTitle": {
+    "message": "Bedankje"
+  },
+  "donateHeaderTitle": {
+    "message": "Met liefde gemaakt in Saksen-Anhalt"
+  },
+  "donateIntro": {
+    "message": "Als deze extensie tijd heeft bespaard, helpt een kleine fooi om hem te onderhouden. Geen tracking, geen telemetrie -- alleen dank."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- koffie trakteren"
+  },
+  "donateOrByCrypto": {
+    "message": "Of via crypto:"
+  },
+  "donateCopyAddress": {
+    "message": "Adres kopiëren"
+  },
+  "donateCopied": {
+    "message": "Gekopieerd"
+  },
+  "donateThanks": {
+    "message": "Heel erg bedankt -- blijf nieuwsgierig."
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Stream"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

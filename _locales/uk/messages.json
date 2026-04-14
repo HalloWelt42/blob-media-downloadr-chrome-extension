@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Захоплюйте аудіо, відео, зображення та документи, що подаються як blob URL на будь-якому сайті, включно з потоками MediaSource."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Блоби ще не захоплено."
+  },
+  "popupEmptyHint": {
+    "message": "Відкрийте або відтворіть медіафайл на цій сторінці. Блоби з'являться тут автоматично."
+  },
+  "popupBtnRefresh": {
+    "message": "Оновити"
+  },
+  "popupBtnOptions": {
+    "message": "Налаштування"
+  },
+  "popupBtnClear": {
+    "message": "Очистити список"
+  },
+  "filterAll": {
+    "message": "Усі"
+  },
+  "filterAudio": {
+    "message": "Аудіо"
+  },
+  "filterVideo": {
+    "message": "Відео"
+  },
+  "filterImage": {
+    "message": "Зображення"
+  },
+  "filterDocument": {
+    "message": "Документ"
+  },
+  "filterOther": {
+    "message": "Інше"
+  },
+  "listSource": {
+    "message": "Джерело"
+  },
+  "listSize": {
+    "message": "Розмір"
+  },
+  "listDownload": {
+    "message": "Завантажити"
+  },
+  "listRemove": {
+    "message": "Видалити"
+  },
+  "listCapturedAt": {
+    "message": "Захоплено"
+  },
+  "listLive": {
+    "message": "Наживо"
+  },
+  "listFinal": {
+    "message": "Готово"
+  },
+  "listMseLabel": {
+    "message": "Потік"
+  },
+  "listUnknownTitle": {
+    "message": "Сторінка без назви"
+  },
+  "tooltipRefresh": {
+    "message": "Оновити список"
+  },
+  "tooltipOptions": {
+    "message": "Відкрити налаштування"
+  },
+  "tooltipClear": {
+    "message": "Видалити всі захоплені блоби"
+  },
+  "tooltipDownload": {
+    "message": "Завантажити цей блоб"
+  },
+  "tooltipRemove": {
+    "message": "Видалити зі списку"
+  },
+  "tooltipDonate": {
+    "message": "Подякувати"
+  },
+  "tooltipGithub": {
+    "message": "Проєкт на GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "Завантаження почалося"
+  },
+  "toastSourceGone": {
+    "message": "Вкладка-джерело більше недоступна"
+  },
+  "toastCleared": {
+    "message": "Список очищено"
+  },
+  "toastRemoved": {
+    "message": "Запис видалено"
+  },
+  "toastMseNotReady": {
+    "message": "Потік ще триває, буде завантажено поточний буфер"
+  },
+  "optionsTitle": {
+    "message": "Налаштування"
+  },
+  "optionsSectionFilename": {
+    "message": "Ім'я файлу"
+  },
+  "optionsFilenamePattern": {
+    "message": "Шаблон імені файлу"
+  },
+  "optionsFilenameHint": {
+    "message": "Доступні токени: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Автозавантаження"
+  },
+  "optionsAutoDownload": {
+    "message": "Автоматично завантажувати захоплені блоби"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Вимкнено"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Усі типи"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Тільки вибрані типи"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Мінімальний розмір (КБ) для автозавантаження"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "Завантажувати потоки MediaSource лише після завершення"
+  },
+  "optionsTypeAudio": {
+    "message": "Аудіо"
+  },
+  "optionsTypeVideo": {
+    "message": "Відео"
+  },
+  "optionsTypeImage": {
+    "message": "Зображення"
+  },
+  "optionsTypeDocument": {
+    "message": "Документ"
+  },
+  "optionsSectionHosts": {
+    "message": "Правила для хостів"
+  },
+  "optionsHostWhitelist": {
+    "message": "Захоплювати лише на цих хостах (по одному на рядок, порожньо = всі)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Ніколи не захоплювати на цих хостах (по одному на рядок)"
+  },
+  "optionsSaveBtn": {
+    "message": "Зберегти"
+  },
+  "optionsResetBtn": {
+    "message": "Скинути"
+  },
+  "optionsSavedToast": {
+    "message": "Налаштування збережено"
+  },
+  "optionsResetToast": {
+    "message": "Налаштування скинуто"
+  },
+  "aboutPrivacy": {
+    "message": "Конфіденційність"
+  },
+  "aboutSource": {
+    "message": "Вихідний код на GitHub"
+  },
+  "donateTitle": {
+    "message": "Подякувати"
+  },
+  "donateHeaderTitle": {
+    "message": "Зроблено з любов'ю в Саксонії-Ангальт"
+  },
+  "donateIntro": {
+    "message": "Якщо це розширення зекономило вам час, невеликі чайові допомагають підтримувати його. Без трекінгу, без телеметрії."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- пригостити кавою"
+  },
+  "donateOrByCrypto": {
+    "message": "Або через крипто:"
+  },
+  "donateCopyAddress": {
+    "message": "Скопіювати адресу"
+  },
+  "donateCopied": {
+    "message": "Скопійовано"
+  },
+  "donateThanks": {
+    "message": "Щиро дякую -- залишайтеся допитливими."
+  },
+  "unitBytes": {
+    "message": "Б"
+  },
+  "unitKilobytes": {
+    "message": "КБ"
+  },
+  "unitMegabytes": {
+    "message": "МБ"
+  },
+  "unitGigabytes": {
+    "message": "ГБ"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Потік"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

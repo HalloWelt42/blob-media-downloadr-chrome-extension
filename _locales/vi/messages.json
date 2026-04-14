@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Chụp audio, video, hình ảnh và tài liệu được phục vụ dưới dạng blob URL trên bất kỳ trang nào, bao gồm luồng MediaSource."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "Chưa chụp được blob nào."
+  },
+  "popupEmptyHint": {
+    "message": "Mở hoặc phát tệp phương tiện trên trang này. Blob sẽ tự động xuất hiện ở đây."
+  },
+  "popupBtnRefresh": {
+    "message": "Làm mới"
+  },
+  "popupBtnOptions": {
+    "message": "Tùy chọn"
+  },
+  "popupBtnClear": {
+    "message": "Xóa danh sách"
+  },
+  "filterAll": {
+    "message": "Tất cả"
+  },
+  "filterAudio": {
+    "message": "Âm thanh"
+  },
+  "filterVideo": {
+    "message": "Video"
+  },
+  "filterImage": {
+    "message": "Hình ảnh"
+  },
+  "filterDocument": {
+    "message": "Tài liệu"
+  },
+  "filterOther": {
+    "message": "Khác"
+  },
+  "listSource": {
+    "message": "Nguồn"
+  },
+  "listSize": {
+    "message": "Kích thước"
+  },
+  "listDownload": {
+    "message": "Tải xuống"
+  },
+  "listRemove": {
+    "message": "Xóa"
+  },
+  "listCapturedAt": {
+    "message": "Đã chụp"
+  },
+  "listLive": {
+    "message": "Trực tiếp"
+  },
+  "listFinal": {
+    "message": "Sẵn sàng"
+  },
+  "listMseLabel": {
+    "message": "Luồng"
+  },
+  "listUnknownTitle": {
+    "message": "Trang không tiêu đề"
+  },
+  "tooltipRefresh": {
+    "message": "Làm mới danh sách"
+  },
+  "tooltipOptions": {
+    "message": "Mở tùy chọn"
+  },
+  "tooltipClear": {
+    "message": "Xóa tất cả blob đã chụp"
+  },
+  "tooltipDownload": {
+    "message": "Tải blob này xuống"
+  },
+  "tooltipRemove": {
+    "message": "Xóa khỏi danh sách"
+  },
+  "tooltipDonate": {
+    "message": "Cảm ơn"
+  },
+  "tooltipGithub": {
+    "message": "Dự án trên GitHub"
+  },
+  "toastDownloadStarted": {
+    "message": "Đã bắt đầu tải xuống"
+  },
+  "toastSourceGone": {
+    "message": "Tab nguồn không còn khả dụng"
+  },
+  "toastCleared": {
+    "message": "Đã xóa danh sách"
+  },
+  "toastRemoved": {
+    "message": "Đã xóa mục"
+  },
+  "toastMseNotReady": {
+    "message": "Luồng vẫn đang chạy, bộ đệm hiện tại sẽ được tải xuống"
+  },
+  "optionsTitle": {
+    "message": "Tùy chọn"
+  },
+  "optionsSectionFilename": {
+    "message": "Tên tệp"
+  },
+  "optionsFilenamePattern": {
+    "message": "Mẫu tên tệp"
+  },
+  "optionsFilenameHint": {
+    "message": "Token có sẵn: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Tải xuống tự động"
+  },
+  "optionsAutoDownload": {
+    "message": "Tự động tải xuống các blob đã chụp"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Tắt"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "Mọi loại"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Chỉ các loại đã chọn"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Kích thước tối thiểu (KB) cho tải tự động"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "Chỉ tải luồng MediaSource sau khi kết thúc"
+  },
+  "optionsTypeAudio": {
+    "message": "Âm thanh"
+  },
+  "optionsTypeVideo": {
+    "message": "Video"
+  },
+  "optionsTypeImage": {
+    "message": "Hình ảnh"
+  },
+  "optionsTypeDocument": {
+    "message": "Tài liệu"
+  },
+  "optionsSectionHosts": {
+    "message": "Quy tắc host"
+  },
+  "optionsHostWhitelist": {
+    "message": "Chỉ chụp trên các host này (mỗi dòng một, trống = tất cả)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Không bao giờ chụp trên các host này (mỗi dòng một)"
+  },
+  "optionsSaveBtn": {
+    "message": "Lưu"
+  },
+  "optionsResetBtn": {
+    "message": "Đặt lại"
+  },
+  "optionsSavedToast": {
+    "message": "Đã lưu cài đặt"
+  },
+  "optionsResetToast": {
+    "message": "Đã đặt lại cài đặt"
+  },
+  "aboutPrivacy": {
+    "message": "Quyền riêng tư"
+  },
+  "aboutSource": {
+    "message": "Mã nguồn trên GitHub"
+  },
+  "donateTitle": {
+    "message": "Cảm ơn"
+  },
+  "donateHeaderTitle": {
+    "message": "Được làm với tình yêu ở Saxony-Anhalt"
+  },
+  "donateIntro": {
+    "message": "Nếu tiện ích này đã giúp bạn tiết kiệm thời gian, một khoản tip nhỏ giúp duy trì nó. Không theo dõi, không đo đạc."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- mời cà phê"
+  },
+  "donateOrByCrypto": {
+    "message": "Hoặc bằng crypto:"
+  },
+  "donateCopyAddress": {
+    "message": "Sao chép địa chỉ"
+  },
+  "donateCopied": {
+    "message": "Đã sao chép"
+  },
+  "donateThanks": {
+    "message": "Cảm ơn rất nhiều -- hãy luôn tò mò."
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Luồng"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

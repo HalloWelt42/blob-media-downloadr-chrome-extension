@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "किसी भी वेबसाइट से blob URL के रूप में दिए गए ऑडियो, वीडियो, चित्र और दस्तावेज़ कैप्चर करें, MediaSource स्ट्रीम सहित।"
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "अभी तक कोई blob कैप्चर नहीं हुआ।"
+  },
+  "popupEmptyHint": {
+    "message": "इस पेज पर कोई मीडिया फ़ाइल खोलें या चलाएं। Blob यहाँ स्वतः दिखेंगे।"
+  },
+  "popupBtnRefresh": {
+    "message": "रिफ़्रेश"
+  },
+  "popupBtnOptions": {
+    "message": "विकल्प"
+  },
+  "popupBtnClear": {
+    "message": "सूची साफ़ करें"
+  },
+  "filterAll": {
+    "message": "सभी"
+  },
+  "filterAudio": {
+    "message": "ऑडियो"
+  },
+  "filterVideo": {
+    "message": "वीडियो"
+  },
+  "filterImage": {
+    "message": "चित्र"
+  },
+  "filterDocument": {
+    "message": "दस्तावेज़"
+  },
+  "filterOther": {
+    "message": "अन्य"
+  },
+  "listSource": {
+    "message": "स्रोत"
+  },
+  "listSize": {
+    "message": "आकार"
+  },
+  "listDownload": {
+    "message": "डाउनलोड"
+  },
+  "listRemove": {
+    "message": "हटाएं"
+  },
+  "listCapturedAt": {
+    "message": "कैप्चर्ड"
+  },
+  "listLive": {
+    "message": "लाइव"
+  },
+  "listFinal": {
+    "message": "तैयार"
+  },
+  "listMseLabel": {
+    "message": "स्ट्रीम"
+  },
+  "listUnknownTitle": {
+    "message": "बिना शीर्षक वाला पेज"
+  },
+  "tooltipRefresh": {
+    "message": "सूची रिफ़्रेश करें"
+  },
+  "tooltipOptions": {
+    "message": "विकल्प खोलें"
+  },
+  "tooltipClear": {
+    "message": "सभी कैप्चर किए गए blob हटाएं"
+  },
+  "tooltipDownload": {
+    "message": "यह blob डाउनलोड करें"
+  },
+  "tooltipRemove": {
+    "message": "सूची से हटाएं"
+  },
+  "tooltipDonate": {
+    "message": "धन्यवाद"
+  },
+  "tooltipGithub": {
+    "message": "GitHub पर प्रोजेक्ट"
+  },
+  "toastDownloadStarted": {
+    "message": "डाउनलोड शुरू हुआ"
+  },
+  "toastSourceGone": {
+    "message": "स्रोत टैब अब उपलब्ध नहीं है"
+  },
+  "toastCleared": {
+    "message": "सूची साफ़ हो गई"
+  },
+  "toastRemoved": {
+    "message": "प्रविष्टि हटा दी गई"
+  },
+  "toastMseNotReady": {
+    "message": "स्ट्रीम अभी चल रही है, मौजूदा बफ़र डाउनलोड होगा"
+  },
+  "optionsTitle": {
+    "message": "विकल्प"
+  },
+  "optionsSectionFilename": {
+    "message": "फ़ाइल का नाम"
+  },
+  "optionsFilenamePattern": {
+    "message": "फ़ाइल नाम पैटर्न"
+  },
+  "optionsFilenameHint": {
+    "message": "उपलब्ध टोकन: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "स्वचालित डाउनलोड"
+  },
+  "optionsAutoDownload": {
+    "message": "कैप्चर किए गए blob स्वचालित रूप से डाउनलोड करें"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "बंद"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "सभी प्रकार"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "केवल चयनित प्रकार"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "स्वचालित डाउनलोड के लिए न्यूनतम आकार (KB)"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "MediaSource स्ट्रीम केवल समाप्त होने पर डाउनलोड करें"
+  },
+  "optionsTypeAudio": {
+    "message": "ऑडियो"
+  },
+  "optionsTypeVideo": {
+    "message": "वीडियो"
+  },
+  "optionsTypeImage": {
+    "message": "चित्र"
+  },
+  "optionsTypeDocument": {
+    "message": "दस्तावेज़"
+  },
+  "optionsSectionHosts": {
+    "message": "होस्ट नियम"
+  },
+  "optionsHostWhitelist": {
+    "message": "केवल इन होस्ट पर कैप्चर करें (प्रति पंक्ति एक, खाली = सभी)"
+  },
+  "optionsHostBlacklist": {
+    "message": "इन होस्ट पर कभी कैप्चर न करें (प्रति पंक्ति एक)"
+  },
+  "optionsSaveBtn": {
+    "message": "सहेजें"
+  },
+  "optionsResetBtn": {
+    "message": "रीसेट"
+  },
+  "optionsSavedToast": {
+    "message": "सेटिंग्स सहेजी गईं"
+  },
+  "optionsResetToast": {
+    "message": "सेटिंग्स रीसेट हो गईं"
+  },
+  "aboutPrivacy": {
+    "message": "गोपनीयता"
+  },
+  "aboutSource": {
+    "message": "GitHub पर सोर्स कोड"
+  },
+  "donateTitle": {
+    "message": "धन्यवाद"
+  },
+  "donateHeaderTitle": {
+    "message": "सैक्सोनी-अनहाल्ट में प्यार से बनाया गया"
+  },
+  "donateIntro": {
+    "message": "अगर इस एक्सटेंशन ने आपका समय बचाया, तो एक छोटी सी टिप इसे बनाए रखने में मदद करती है। कोई ट्रैकिंग नहीं, कोई टेलीमेट्री नहीं।"
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- कॉफ़ी खरीदें"
+  },
+  "donateOrByCrypto": {
+    "message": "या क्रिप्टो के माध्यम से:"
+  },
+  "donateCopyAddress": {
+    "message": "पता कॉपी करें"
+  },
+  "donateCopied": {
+    "message": "कॉपी किया गया"
+  },
+  "donateThanks": {
+    "message": "बहुत-बहुत धन्यवाद -- जिज्ञासु बने रहें।"
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "स्ट्रीम"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}

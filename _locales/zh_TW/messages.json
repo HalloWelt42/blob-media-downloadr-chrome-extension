@@ -1,0 +1,227 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "從任何網站擷取以 blob URL 形式提供的音訊、影片、圖片和文件，包括 MediaSource 串流。"
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "尚未擷取任何 blob。"
+  },
+  "popupEmptyHint": {
+    "message": "在此頁面開啟或播放媒體檔案。blob 會自動出現在這裡。"
+  },
+  "popupBtnRefresh": {
+    "message": "重新整理"
+  },
+  "popupBtnOptions": {
+    "message": "選項"
+  },
+  "popupBtnClear": {
+    "message": "清空清單"
+  },
+  "filterAll": {
+    "message": "全部"
+  },
+  "filterAudio": {
+    "message": "音訊"
+  },
+  "filterVideo": {
+    "message": "影片"
+  },
+  "filterImage": {
+    "message": "圖片"
+  },
+  "filterDocument": {
+    "message": "文件"
+  },
+  "filterOther": {
+    "message": "其他"
+  },
+  "listSource": {
+    "message": "來源"
+  },
+  "listSize": {
+    "message": "大小"
+  },
+  "listDownload": {
+    "message": "下載"
+  },
+  "listRemove": {
+    "message": "移除"
+  },
+  "listCapturedAt": {
+    "message": "擷取時間"
+  },
+  "listLive": {
+    "message": "直播"
+  },
+  "listFinal": {
+    "message": "就緒"
+  },
+  "listMseLabel": {
+    "message": "串流"
+  },
+  "listUnknownTitle": {
+    "message": "無標題頁面"
+  },
+  "tooltipRefresh": {
+    "message": "重新整理清單"
+  },
+  "tooltipOptions": {
+    "message": "開啟選項"
+  },
+  "tooltipClear": {
+    "message": "移除所有擷取的 blob"
+  },
+  "tooltipDownload": {
+    "message": "下載此 blob"
+  },
+  "tooltipRemove": {
+    "message": "從清單移除"
+  },
+  "tooltipDonate": {
+    "message": "致謝"
+  },
+  "tooltipGithub": {
+    "message": "GitHub 上的專案"
+  },
+  "toastDownloadStarted": {
+    "message": "已開始下載"
+  },
+  "toastSourceGone": {
+    "message": "來源分頁已無法使用"
+  },
+  "toastCleared": {
+    "message": "清單已清空"
+  },
+  "toastRemoved": {
+    "message": "項目已移除"
+  },
+  "toastMseNotReady": {
+    "message": "串流仍在進行中，將下載目前緩衝區"
+  },
+  "optionsTitle": {
+    "message": "選項"
+  },
+  "optionsSectionFilename": {
+    "message": "檔案名稱"
+  },
+  "optionsFilenamePattern": {
+    "message": "檔案名稱樣式"
+  },
+  "optionsFilenameHint": {
+    "message": "可用的符號: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "自動下載"
+  },
+  "optionsAutoDownload": {
+    "message": "自動下載擷取的 blob"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "關閉"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "所有類型"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "僅選定類型"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "自動下載的最小大小 (KB)"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "僅在結束後下載 MediaSource 串流"
+  },
+  "optionsTypeAudio": {
+    "message": "音訊"
+  },
+  "optionsTypeVideo": {
+    "message": "影片"
+  },
+  "optionsTypeImage": {
+    "message": "圖片"
+  },
+  "optionsTypeDocument": {
+    "message": "文件"
+  },
+  "optionsSectionHosts": {
+    "message": "主機規則"
+  },
+  "optionsHostWhitelist": {
+    "message": "僅在這些主機上擷取（每行一個，空白 = 全部）"
+  },
+  "optionsHostBlacklist": {
+    "message": "永不在這些主機上擷取（每行一個）"
+  },
+  "optionsSaveBtn": {
+    "message": "儲存"
+  },
+  "optionsResetBtn": {
+    "message": "重設"
+  },
+  "optionsSavedToast": {
+    "message": "設定已儲存"
+  },
+  "optionsResetToast": {
+    "message": "設定已重設"
+  },
+  "aboutPrivacy": {
+    "message": "隱私"
+  },
+  "aboutSource": {
+    "message": "GitHub 上的原始碼"
+  },
+  "donateTitle": {
+    "message": "致謝"
+  },
+  "donateHeaderTitle": {
+    "message": "在薩克森-安哈爾特以愛製作"
+  },
+  "donateIntro": {
+    "message": "如果這個擴充套件為你節省了時間，一點小費能幫助維護它。沒有追蹤、沒有遙測 -- 只有感謝。"
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- 請喝咖啡"
+  },
+  "donateOrByCrypto": {
+    "message": "或透過加密貨幣："
+  },
+  "donateCopyAddress": {
+    "message": "複製位址"
+  },
+  "donateCopied": {
+    "message": "已複製"
+  },
+  "donateThanks": {
+    "message": "非常感謝 -- 保持好奇。"
+  },
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "串流"
+  },
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}
