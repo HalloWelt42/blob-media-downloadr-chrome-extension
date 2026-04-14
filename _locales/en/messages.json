@@ -1,0 +1,238 @@
+{
+  "appName": {
+    "message": "Browser Media Blob Downloadr"
+  },
+  "appDescription": {
+    "message": "Capture audio, video, image and document blobs from any website, including streamed MediaSource content."
+  },
+  "appDefaultTitle": {
+    "message": "Browser Media Blob Downloadr"
+  },
+
+  "popupHeaderTitle": {
+    "message": "Blob Downloadr"
+  },
+  "popupEmpty": {
+    "message": "No blobs captured yet."
+  },
+  "popupEmptyHint": {
+    "message": "Open or play a media file on this page. Blobs will appear here automatically."
+  },
+  "popupBtnRefresh": {
+    "message": "Refresh"
+  },
+  "popupBtnOptions": {
+    "message": "Options"
+  },
+  "popupBtnClear": {
+    "message": "Clear list"
+  },
+
+  "filterAll": {
+    "message": "All"
+  },
+  "filterAudio": {
+    "message": "Audio"
+  },
+  "filterVideo": {
+    "message": "Video"
+  },
+  "filterImage": {
+    "message": "Image"
+  },
+  "filterDocument": {
+    "message": "Document"
+  },
+  "filterOther": {
+    "message": "Other"
+  },
+
+  "listSource": {
+    "message": "Source"
+  },
+  "listSize": {
+    "message": "Size"
+  },
+  "listDownload": {
+    "message": "Download"
+  },
+  "listRemove": {
+    "message": "Remove"
+  },
+  "listCapturedAt": {
+    "message": "Captured"
+  },
+  "listLive": {
+    "message": "Live"
+  },
+  "listFinal": {
+    "message": "Ready"
+  },
+  "listMseLabel": {
+    "message": "Stream"
+  },
+  "listUnknownTitle": {
+    "message": "Untitled page"
+  },
+
+  "tooltipRefresh": {
+    "message": "Refresh list"
+  },
+  "tooltipOptions": {
+    "message": "Open options"
+  },
+  "tooltipClear": {
+    "message": "Clear all captured blobs"
+  },
+  "tooltipDownload": {
+    "message": "Download this blob"
+  },
+  "tooltipRemove": {
+    "message": "Remove from list"
+  },
+  "tooltipDonate": {
+    "message": "Say thanks"
+  },
+  "tooltipGithub": {
+    "message": "Project on GitHub"
+  },
+
+  "toastDownloadStarted": {
+    "message": "Download started"
+  },
+  "toastSourceGone": {
+    "message": "Source tab is no longer available"
+  },
+  "toastCleared": {
+    "message": "List cleared"
+  },
+  "toastRemoved": {
+    "message": "Entry removed"
+  },
+  "toastMseNotReady": {
+    "message": "Stream is still recording, download will use the current buffer"
+  },
+
+  "optionsTitle": {
+    "message": "Options"
+  },
+  "optionsSectionFilename": {
+    "message": "File name"
+  },
+  "optionsFilenamePattern": {
+    "message": "File name pattern"
+  },
+  "optionsFilenameHint": {
+    "message": "Available tokens: {host}, {date}, {time}, {mime}, {ext}, {index}, {title}."
+  },
+  "optionsSectionAutoDownload": {
+    "message": "Auto-download"
+  },
+  "optionsAutoDownload": {
+    "message": "Automatically download captured blobs"
+  },
+  "optionsAutoDownloadOff": {
+    "message": "Off"
+  },
+  "optionsAutoDownloadAll": {
+    "message": "All types"
+  },
+  "optionsAutoDownloadByType": {
+    "message": "Selected types only"
+  },
+  "optionsAutoDownloadMinSize": {
+    "message": "Minimum size (KB) for auto-download"
+  },
+  "optionsAutoDownloadMseOnlyFinal": {
+    "message": "Only download MediaSource streams after they finish"
+  },
+  "optionsTypeAudio": {
+    "message": "Audio"
+  },
+  "optionsTypeVideo": {
+    "message": "Video"
+  },
+  "optionsTypeImage": {
+    "message": "Image"
+  },
+  "optionsTypeDocument": {
+    "message": "Document"
+  },
+  "optionsSectionHosts": {
+    "message": "Host rules"
+  },
+  "optionsHostWhitelist": {
+    "message": "Only capture on these hosts (one per line, leave empty for all)"
+  },
+  "optionsHostBlacklist": {
+    "message": "Never capture on these hosts (one per line)"
+  },
+  "optionsSaveBtn": {
+    "message": "Save"
+  },
+  "optionsResetBtn": {
+    "message": "Reset to defaults"
+  },
+  "optionsSavedToast": {
+    "message": "Settings saved"
+  },
+  "optionsResetToast": {
+    "message": "Settings reset"
+  },
+
+  "aboutPrivacy": {
+    "message": "Privacy"
+  },
+  "aboutSource": {
+    "message": "Source code on GitHub"
+  },
+
+  "donateTitle": {
+    "message": "Say thanks"
+  },
+  "donateHeaderTitle": {
+    "message": "Made with love in Saxony-Anhalt"
+  },
+  "donateIntro": {
+    "message": "If this extension saved you time, a small tip keeps it maintained. No tracking, no telemetry -- just gratitude."
+  },
+  "donateKofi": {
+    "message": "Ko-fi -- buy a coffee"
+  },
+  "donateOrByCrypto": {
+    "message": "Or via crypto:"
+  },
+  "donateCopyAddress": {
+    "message": "Copy address"
+  },
+  "donateCopied": {
+    "message": "Copied"
+  },
+  "donateThanks": {
+    "message": "Thanks a lot -- stay curious."
+  },
+
+  "unitBytes": {
+    "message": "B"
+  },
+  "unitKilobytes": {
+    "message": "KB"
+  },
+  "unitMegabytes": {
+    "message": "MB"
+  },
+  "unitGigabytes": {
+    "message": "GB"
+  },
+
+  "kindBlob": {
+    "message": "Blob"
+  },
+  "kindMse": {
+    "message": "Stream"
+  },
+
+  "filenameDefaultPattern": {
+    "message": "{host}-{date}-{time}-{index}.{ext}"
+  }
+}
