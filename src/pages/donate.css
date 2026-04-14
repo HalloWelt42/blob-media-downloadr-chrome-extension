@@ -1,0 +1,272 @@
+/* Donate-Seite. Basis-Variablen aus page-common.css.
+   Zusätzliche Variablen für die Spenden-spezifische Akzentfarbe. */
+
+:root {
+  --donate-color: #ff5e5b;
+  --donate-color-hover: #ff4442;
+  --donate-bg-hover: rgba(255, 94, 91, 0.1);
+  --github-color: #ece8e1;
+  --github-bg: #2b2a27;
+  --github-bg-hover: #3e3d37;
+  --crypto-btc: #f7931a;
+  --crypto-doge: #c2a633;
+  --crypto-eth: #627eea;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --github-color: #1c1917;
+    --github-bg: #f5f5f4;
+    --github-bg-hover: #e7e5e4;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 12px;
+}
+
+.donate-page {
+  max-width: 460px;
+  width: 100%;
+}
+
+.donate-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.donate-header .icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.donate-header h1 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.donate-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* GitHub-Button (primary, aber neutraler) */
+.github-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 20px;
+  background: var(--github-bg);
+  color: var(--github-color);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--t-fast), border-color var(--t-fast);
+  margin-bottom: 12px;
+}
+
+.github-btn:hover {
+  background: var(--github-bg-hover);
+  border-color: var(--accent);
+  color: var(--github-color);
+  text-decoration: none;
+}
+
+.github-btn svg {
+  flex-shrink: 0;
+}
+
+/* Ko-fi */
+.kofi-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--donate-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--t-fast), transform 0.1s;
+  margin-bottom: 28px;
+}
+
+.kofi-btn:hover {
+  background: var(--donate-color-hover);
+  transform: translateY(-1px);
+  color: #fff;
+  text-decoration: none;
+}
+
+.kofi-icon {
+  font-size: 20px;
+}
+
+/* Crypto-Bereich */
+.crypto-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.crypto-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.crypto-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  transition: background var(--t-fast), border-color var(--t-fast),
+    color var(--t-fast);
+}
+
+.crypto-tab:hover {
+  background: var(--bg-elevated);
+  color: var(--text);
+}
+
+.crypto-tab.active {
+  border-color: var(--donate-color);
+  color: var(--text);
+  background: var(--donate-bg-hover);
+}
+
+.coin-icon {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.crypto-content {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.crypto-content.active {
+  display: block;
+}
+
+.crypto-box {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.qr-code {
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border-radius: 8px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.qr-code img {
+  width: 100%;
+  height: 100%;
+}
+
+.qr-code .placeholder {
+  color: #999;
+  font-size: 11px;
+  text-align: center;
+}
+
+.crypto-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.crypto-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.crypto-address {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 11px;
+  word-break: break-all;
+  color: var(--text-muted);
+  background: var(--bg-base);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  transition: background var(--t-fast), border-color var(--t-fast),
+    color var(--t-fast);
+}
+
+.copy-btn:hover {
+  background: var(--donate-color);
+  border-color: var(--donate-color);
+  color: #fff;
+}
+
+.donate-footer {
+  text-align: center;
+  margin-top: 28px;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 420px) {
+  .crypto-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .crypto-address {
+    text-align: left;
+  }
+}

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-i18n="popupHeaderTitle">Blob Downloadr</title>
+    <link rel="stylesheet" href="../pages/page-common.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="app-header">
+        <div class="header-left">
+          <img
+            class="header-icon"
+            src="../../assets/icons/icon-128.png"
+            alt=""
+            width="18"
+            height="18"
+          />
+          <h1 data-i18n="popupHeaderTitle">Blob Downloadr</h1>
+        </div>
+        <div class="header-actions">
+          <button
+            id="btn-refresh"
+            class="btn-icon"
+            type="button"
+            data-i18n-title="tooltipRefresh"
+            data-i18n-aria-label="popupBtnRefresh"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 12a9 9 0 0 1 15-6.7L21 8" />
+              <path d="M21 3v5h-5" />
+              <path d="M21 12a9 9 0 0 1-15 6.7L3 16" />
+              <path d="M3 21v-5h5" />
+            </svg>
+          </button>
+          <button
+            id="btn-clear"
+            class="btn-icon"
+            type="button"
+            data-i18n-title="tooltipClear"
+            data-i18n-aria-label="popupBtnClear"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="3 6 5 6 21 6" />
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+              <path d="M10 11v6" />
+              <path d="M14 11v6" />
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
+            </svg>
+          </button>
+          <button
+            id="btn-options"
+            class="btn-icon"
+            type="button"
+            data-i18n-title="tooltipOptions"
+            data-i18n-aria-label="popupBtnOptions"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3" />
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <nav class="filter-bar" id="filter-bar">
+        <button class="filter-pill active" type="button" data-filter="all" data-i18n="filterAll">All</button>
+        <button class="filter-pill" type="button" data-filter="audio" data-i18n="filterAudio">Audio</button>
+        <button class="filter-pill" type="button" data-filter="video" data-i18n="filterVideo">Video</button>
+        <button class="filter-pill" type="button" data-filter="image" data-i18n="filterImage">Image</button>
+        <button class="filter-pill" type="button" data-filter="document" data-i18n="filterDocument">Document</button>
+        <button class="filter-pill" type="button" data-filter="other" data-i18n="filterOther">Other</button>
+      </nav>
+
+      <main>
+        <section id="empty-state" class="empty-state">
+          <p data-i18n="popupEmpty"></p>
+          <p class="hint" data-i18n="popupEmptyHint"></p>
+        </section>
+
+        <section id="blob-list" class="blob-list hidden"></section>
+      </main>
+
+      <footer class="app-footer">
+        <div class="footer-pills">
+          <a
+            id="link-privacy"
+            href="https://github.com/HalloWelt42/blob-media-downloadr-chrome-extension/blob/main/PRIVACY.md"
+            target="_blank"
+            rel="noopener"
+            class="pill"
+            data-i18n-title="aboutPrivacy"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="13" height="13">
+              <path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4Z" />
+            </svg>
+            <span data-i18n="aboutPrivacy">Privacy</span>
+          </a>
+
+          <button
+            id="link-donate"
+            type="button"
+            class="pill pill-primary"
+            data-i18n-title="tooltipDonate"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="13" height="13">
+              <path d="M12 21s-7.5-4.7-10-9.4C.2 7.9 2.9 4 6.7 4c2.1 0 3.6 1 5.3 3 1.7-2 3.2-3 5.3-3 3.8 0 6.5 3.9 4.7 7.6C19.5 16.3 12 21 12 21Z" />
+            </svg>
+            <span data-i18n="tooltipDonate">Thanks</span>
+          </button>
+
+          <a
+            id="link-github"
+            href="https://github.com/HalloWelt42/blob-media-downloadr-chrome-extension"
+            target="_blank"
+            rel="noopener"
+            class="pill"
+            data-i18n-title="tooltipGithub"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="13" height="13">
+              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.92.57.1.78-.25.78-.55v-2.1c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.76 2.7 1.25 3.36.95.1-.74.4-1.25.74-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.19 1.18a11.1 11.1 0 0 1 5.81 0c2.22-1.49 3.19-1.18 3.19-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.35.78 1.05.78 2.12v3.14c0 .3.21.66.79.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+
+        <p class="footer-copyright">
+          &copy; 2026 HalloWelt42
+          <span class="footer-sep">|</span>
+          <span data-i18n="aboutSource">Source on GitHub</span>
+        </p>
+      </footer>
+
+      <div id="toast" class="toast"></div>
+    </div>
+
+    <script src="../../shared/i18n.js"></script>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
