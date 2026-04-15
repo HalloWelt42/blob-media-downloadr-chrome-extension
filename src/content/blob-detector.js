@@ -67,17 +67,16 @@
   function reportBlob(kind, url, mimeType, size, isFinal, opts) {
     if (!url) return;
     var key = kind + '|' + url;
-    var isWildcardMime = !mimeType || /\*/.test(mimeType);
     if (seen.has(key)) {
-      // Bereits bekannt. Updates nur senden wenn wir echte neue Info haben;
-      // ein DOM-Scan mit Wildcard-MIME wie "audio/*" darf NICHT den echten
-      // MIME vom Hook ueberschreiben.
+      // Bereits bekannt. DOM-Scan sendet keine Update-Nachrichten,
+      // die den Hook-MIME ueberschreiben koennten. Der Service-Worker
+      // entscheidet beim BLOB_UPDATE selbst, ob ein MIME "besser" ist.
       if (opts && opts.fromDomScan) return;
       sendToBackground({
         type: 'BLOB_UPDATE',
         url: url,
         size: size || 0,
-        mimeType: isWildcardMime ? '' : mimeType,
+        mimeType: mimeType || '',
         isFinal: !!isFinal
       });
       return;
@@ -88,7 +87,7 @@
       type: 'BLOB_FOUND',
       kind: kind,
       url: url,
-      mimeType: isWildcardMime ? '' : mimeType,
+      mimeType: mimeType || '',
       size: size || 0,
       isFinal: !!isFinal,
       capturedAt: Date.now(),
@@ -222,17 +221,20 @@
           });
           return;
         }
-        // Hook konnte nicht liefern: versuchen wir den klassischen
-        // ISOLATED-world-Download mit der Original-URL als letzten Versuch.
-        triggerDownload(url, filename)
-          .then(function () {
-            resolve({ ok: true, fallback: (data && data.error) || 'hook-failed' });
-          })
-          .catch(function (e) {
-            resolve({
-              ok: false,
-              error: (data && data.error) || String(e)
-            });
+        // Hook konnte nicht liefern: Bytes per fetch(url) holen. Das geht
+        // in vielen Faellen, auch wenn der Hook die URL nie gesehen hat
+        // (z.B. Blob aus einem ServiceWorker der Seite). Fetch scheitert
+        // nur, wenn die URL wirklich revoked/invalidiert ist.
+        fetchAndDownload(url, filename)
+          .then(resolve)
+          .catch(function () {
+            triggerDownload(url, filename)
+              .then(function () {
+                resolve({ ok: true, fallback: 'raw' });
+              })
+              .catch(function (e) {
+                resolve({ ok: false, error: String(e) });
+              });
           });
       });
 
@@ -253,6 +255,23 @@
         pendingFinalize.delete(requestId);
         resolve({ ok: false, error: String(e) });
       }
+    });
+  }
+
+  function fetchAndDownload(url, filename) {
+    return fetch(url).then(function (resp) {
+      if (!resp || !resp.ok) throw new Error('fetch-status-' + (resp && resp.status));
+      return resp.blob();
+    }).then(function (b) {
+      if (!b || b.size === 0) throw new Error('blob-empty');
+      var freshUrl = URL.createObjectURL(b);
+      return triggerDownload(freshUrl, filename).then(function () {
+        // Etwas Zeit lassen, damit der Browser die URL fuer den Download noch aufloest
+        setTimeout(function () {
+          try { URL.revokeObjectURL(freshUrl); } catch (_e) {}
+        }, 10000);
+        return { ok: true, size: b.size, fallback: 'fetch' };
+      });
     });
   }
 
@@ -278,28 +297,51 @@
     });
   }
 
-  // DOM-Scan: Fallback für blob:-URLs, die vor Hook-Injektion entstanden
+  // DOM-Scan: Fallback fuer blob:-URLs, die vor Hook-Injektion entstanden.
+  // Deckt jetzt auch Custom Elements (z.B. <audio-element>) und beliebige
+  // Attribute ab, die eine blob:-URL halten -- moderne Web-Apps verstecken
+  // Player oft in Shadow/Custom-Komponenten, nicht in nativen <audio>-Tags.
   function scanDom() {
-    var nodes = document.querySelectorAll(
-      'video[src^="blob:"], audio[src^="blob:"], img[src^="blob:"], source[src^="blob:"], a[href^="blob:"]'
-    );
-    for (var i = 0; i < nodes.length; i++) {
-      var n = nodes[i];
+    try {
+      scanRoot(document);
+    } catch (_e) {
+      /* ignorieren */
+    }
+  }
+
+  function scanRoot(root) {
+    if (!root || !root.querySelectorAll) return;
+    // Alle Elemente mit einem 'src' oder 'href', das mit blob: beginnt --
+    // inklusive Custom-Tags wie <audio-element>, <video-player> etc.
+    var withSrc = root.querySelectorAll('[src^="blob:"], [href^="blob:"]');
+    for (var i = 0; i < withSrc.length; i++) {
+      var n = withSrc[i];
       var url = n.getAttribute('src') || n.getAttribute('href');
       if (!url) continue;
       if (seen.has('blob|' + url) || seen.has('mse|' + url)) continue;
-      var mime =
-        n.tagName === 'VIDEO'
-          ? 'video/*'
-          : n.tagName === 'AUDIO'
-            ? 'audio/*'
-            : n.tagName === 'IMG'
-              ? 'image/*'
-              : n.tagName === 'SOURCE'
-                ? n.getAttribute('type') || ''
-                : '';
-      reportBlob('blob', url, mime, 0, true);
+      reportBlob('blob', url, guessMimeFromElement(n), 0, true, { fromDomScan: true });
     }
+    // Zusaetzlich: in Shadow-Roots der Seiten-Komponenten reinsehen.
+    // Manche Messenger rendern den eigentlichen <audio>-Tag im Shadow DOM.
+    var all = root.querySelectorAll('*');
+    for (var j = 0; j < all.length; j++) {
+      if (all[j].shadowRoot) {
+        scanRoot(all[j].shadowRoot);
+      }
+    }
+  }
+
+  function guessMimeFromElement(n) {
+    var tag = (n.tagName || '').toLowerCase();
+    if (tag === 'video' || tag.indexOf('video') !== -1) return 'video/*';
+    if (tag === 'audio' || tag.indexOf('audio') !== -1) return 'audio/*';
+    if (tag === 'img' || tag === 'picture') return 'image/*';
+    if (tag === 'source') return n.getAttribute('type') || '';
+    // Custom Elements mit klasse 'voice' / 'voice-message' / 'audio-...':
+    var cls = (n.className || '') + ' ' + (n.getAttribute && n.getAttribute('class') || '');
+    if (/voice|audio/i.test(cls)) return 'audio/*';
+    if (/video/i.test(cls)) return 'video/*';
+    return '';
   }
 
   try {

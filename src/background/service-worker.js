@@ -126,21 +126,43 @@ function clearTab(tabId) {
   }
 }
 
+function isSpecificMime(mime) {
+  return typeof mime === 'string' && mime.length > 0 && !/\*/.test(mime);
+}
+
+function adoptMime(oldMime, newMime) {
+  // Neuer MIME gewinnt nur, wenn er spezifischer ist als der alte.
+  // Ein spaeter eintreffender Wildcard (z.B. "audio/*" vom DOM-Scan) darf
+  // einen schon vom Hook gesetzten echten MIME nicht zerstoeren.
+  if (!newMime) return oldMime;
+  if (!isSpecificMime(oldMime) && (isSpecificMime(newMime) || newMime)) {
+    return newMime;
+  }
+  if (isSpecificMime(newMime)) {
+    return newMime;
+  }
+  return oldMime;
+}
+
 async function handleBlobFound(msg, tabId) {
   const map = ensureTab(tabId);
   if (map.has(msg.url)) {
-    // Schon bekannt, nur aktualisieren
     const prev = map.get(msg.url);
     prev.size = Math.max(prev.size, msg.size || 0);
-    prev.mimeType = msg.mimeType || prev.mimeType;
+    const merged = adoptMime(prev.mimeType, msg.mimeType);
+    if (merged !== prev.mimeType) {
+      prev.mimeType = merged;
+      prev.category = categoryForMime(merged);
+    }
     prev.isFinal = !!msg.isFinal || prev.isFinal;
     prev.updatedAt = Date.now();
   } else {
+    const mime = msg.mimeType || '';
     map.set(msg.url, {
       kind: msg.kind || 'blob',
       url: msg.url,
-      mimeType: msg.mimeType || '',
-      category: categoryForMime(msg.mimeType || ''),
+      mimeType: mime,
+      category: categoryForMime(mime),
       size: msg.size || 0,
       isFinal: msg.kind === 'blob' ? true : !!msg.isFinal,
       capturedAt: msg.capturedAt || Date.now(),
@@ -162,8 +184,11 @@ async function handleBlobUpdate(msg, tabId) {
   const meta = map.get(msg.url);
   if (typeof msg.size === 'number') meta.size = Math.max(meta.size, msg.size);
   if (msg.mimeType) {
-    meta.mimeType = msg.mimeType;
-    meta.category = categoryForMime(msg.mimeType);
+    const merged = adoptMime(meta.mimeType, msg.mimeType);
+    if (merged !== meta.mimeType) {
+      meta.mimeType = merged;
+      meta.category = categoryForMime(merged);
+    }
   }
   if (msg.isFinal) meta.isFinal = true;
   meta.updatedAt = Date.now();
