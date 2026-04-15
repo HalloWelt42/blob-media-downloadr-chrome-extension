@@ -43,6 +43,8 @@
   // Pending finalize-Requests (MSE -> neue Blob-URL)
   var pendingFinalize = new Map();
   var finalizeCounter = 0;
+  // URLs, fuer die bereits ein Auto-Probe per fetch() laeuft oder lief.
+  var probed = new Set();
 
   function sendToBackground(msg) {
     try {
@@ -94,6 +96,53 @@
       pageTitle: meta.pageTitle,
       host: meta.host,
       pageUrl: meta.pageUrl
+    });
+    // Wenn wir keine Groesse haben (DOM-Scan ohne Hook-Info), versuchen wir
+    // die Bytes per fetch() zu ziehen. Klappt in vielen Faellen sogar wenn
+    // der Main-Thread-Hook nie getriggert wurde (z.B. weil ein Worker der
+    // Seite die URL erzeugt hat oder wenn Telegram die blob:-URL ueber den
+    // eigenen ServiceWorker bedient).
+    if (kind === 'blob' && !(size > 0) && !probed.has(url)) {
+      probed.add(url);
+      probeBlobUrl(url);
+    }
+  }
+
+  function probeBlobUrl(url) {
+    // Klein anfangen: nur HEAD-aehnlich per Range 0-1023 holen, damit wir
+    // grosse Dateien nicht unnoetig ziehen. Content-Length liefert uns die
+    // Gesamtgroesse, content-type den echten MIME.
+    fetch(url, { headers: { Range: 'bytes=0-1023' } }).then(function (resp) {
+      if (!resp || !resp.ok && resp.status !== 206) return null;
+      var ct = resp.headers && resp.headers.get('content-type') || '';
+      var cr = resp.headers && resp.headers.get('content-range') || '';
+      var cl = resp.headers && resp.headers.get('content-length') || '';
+      var total = 0;
+      var m = cr.match(/bytes \d+-\d+\/(\d+)/i);
+      if (m) total = parseInt(m[1], 10);
+      else if (cl) total = parseInt(cl, 10);
+      if (!total) {
+        // Kein Range-Support -> komplette Response lesen um Groesse zu erfahren
+        return resp.blob().then(function (b) {
+          return { size: (b && b.size) || 0, mime: ct || (b && b.type) || '' };
+        });
+      }
+      return { size: total, mime: ct };
+    }).then(function (info) {
+      if (!info) return;
+      if (info.size > 0 || info.mime) {
+        sendToBackground({
+          type: 'BLOB_UPDATE',
+          url: url,
+          size: info.size || 0,
+          mimeType: info.mime || '',
+          isFinal: true
+        });
+      }
+    }).catch(function () {
+      // URL war nicht auflsoebar (revoked, Cross-Origin, ServiceWorker-Block).
+      // Dann bleibt der Eintrag im Warten-Zustand; der Download-Button
+      // darf trotzdem versucht werden.
     });
   }
 

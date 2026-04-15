@@ -289,6 +289,37 @@ main {
   flex-shrink: 0;
 }
 
+.ext-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.ext-pill {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background var(--t-fast), border-color var(--t-fast),
+    color var(--t-fast);
+}
+
+.ext-pill:hover {
+  background: var(--bg-card);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.ext-pill.active {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .blob-card.is-pending {
   opacity: 0.85;
   border-style: dashed;

@@ -235,5 +235,11 @@
   },
   "tooltipEditFilename": {
     "message": "Edit file name"
+  },
+  "tooltipPickExtension": {
+    "message": "Use this extension"
+  },
+  "tooltipDownloadTry": {
+    "message": "Try download (size unknown)"
   }
 }

@@ -3,6 +3,14 @@
 
 import { renderFilename, DEFAULT_PATTERN } from '../lib/filename.js';
 
+const EXT_SUGGESTIONS = {
+  audio: ['ogg', 'opus', 'mp3', 'm4a', 'wav', 'webm', 'aac', 'flac'],
+  video: ['mp4', 'webm', 'mkv', 'mov', 'avi'],
+  image: ['jpg', 'png', 'webp', 'gif', 'svg', 'avif'],
+  document: ['pdf', 'txt', 'json', 'xml', 'zip', 'csv'],
+  other: ['bin', 'dat']
+};
+
 let currentPattern = DEFAULT_PATTERN;
 
 async function loadPattern() {
@@ -240,6 +248,27 @@ function renderCard(item) {
   }
   card.appendChild(fnameRow);
 
+  // Endungs-Vorschlaege passend zur Kategorie -- Klick wechselt nur die
+  // Endung im Dateinamen (Custom-Name wird gesetzt/aktualisiert).
+  const sugList = EXT_SUGGESTIONS[item.category] || EXT_SUGGESTIONS.other;
+  const currentExt = (predictedName.split('.').pop() || '').toLowerCase();
+  const sugRow = document.createElement('div');
+  sugRow.className = 'ext-suggestions';
+  for (const ext of sugList) {
+    const pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'ext-pill' + (ext === currentExt ? ' active' : '');
+    pill.textContent = '.' + ext;
+    pill.title = t('tooltipPickExtension');
+    pill.addEventListener('click', () => {
+      const base = predictedFilename(item).replace(/\.[^.]+$/, '');
+      customNames.set(item.url, base + '.' + ext);
+      refresh();
+    });
+    sugRow.appendChild(pill);
+  }
+  card.appendChild(sugRow);
+
   // Zeile 4: Action-Buttons
   const actions = document.createElement('div');
   actions.className = 'blob-actions';
@@ -247,8 +276,10 @@ function renderCard(item) {
   const download = document.createElement('button');
   download.className = 'blob-btn primary';
   download.type = 'button';
-  download.title = t('tooltipDownload');
-  download.disabled = !ready;
+  download.title = ready ? t('tooltipDownload') : t('tooltipDownloadTry');
+  // Auch bei size=0 erlauben: der Detector hat einen fetch-Fallback,
+  // der die Bytes vielleicht doch noch ziehen kann. Disabled wirkt
+  // sonst irrefuehrend ('keine Aktion moeglich').
   download.innerHTML =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
   const dlLabel = document.createElement('span');

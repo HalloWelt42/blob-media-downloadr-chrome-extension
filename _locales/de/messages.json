@@ -235,5 +235,11 @@
   },
   "tooltipEditFilename": {
     "message": "Dateinamen bearbeiten"
+  },
+  "tooltipPickExtension": {
+    "message": "Diese Endung verwenden"
+  },
+  "tooltipDownloadTry": {
+    "message": "Download versuchen (Größe unbekannt)"
   }
 }
