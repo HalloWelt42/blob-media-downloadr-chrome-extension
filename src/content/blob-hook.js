@@ -22,7 +22,7 @@
   var NS = '__BMBD__';
   // Debug kann per DevTools-Konsole aktiviert werden:
   //   window.__BMBD_DEBUG__ = true
-  // Dann loggt der Hook Capture, Revoke, Finalize und Download mit Groessen.
+  // Dann loggt der Hook Capture, Revoke, Finalize und Download mit Größen.
   function dbg() {
     if (window.__BMBD_DEBUG__) {
       try { console.log.apply(console, ['[BMBD]'].concat([].slice.call(arguments))); } catch (_e) {}
@@ -119,7 +119,7 @@
 
   // URL.revokeObjectURL hooken.
   // Wichtig: wir entfernen den Eintrag NICHT aus blobs, wir markieren ihn nur.
-  // Das Blob-Objekt bleibt damit erreichbar und wir koennen beim Download eine
+  // Das Blob-Objekt bleibt damit erreichbar und wir können beim Download eine
   // frische blob:-URL daraus erzeugen. Ohne das liefert <a download> auf eine
   // revoked-URL 0 Byte (typisches Verhalten z.B. bei Messenger-Sprachnachrichten).
   URL.revokeObjectURL = function (url) {
@@ -312,10 +312,10 @@
     }
 
     if (!resolved || !resolved.url) {
-      dbg('Kein Finalize moeglich, fallback auf Original-URL');
+      dbg('Kein Finalize möglich, fallback auf Original-URL');
       resolved = { url: url, size: 0 };
     } else {
-      dbg('Frische URL fuer Download:', resolved.url, 'Groesse:', resolved.size);
+      dbg('Frische URL für Download:', resolved.url, 'Größe:', resolved.size);
     }
 
     try {

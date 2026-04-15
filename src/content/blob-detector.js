@@ -8,12 +8,12 @@
 //   - Scannt DOM nach <video|audio|img|source|a> mit blob:-URL (Fallback)
 //   - Führt DOWNLOAD_BLOB / REVOKE_BLOB vom Service-Worker aus
 //
-// Wichtig: Der Hook in blob-hook.js haelt Blob-Referenzen auch nach
+// Wichtig: Der Hook in blob-hook.js hält Blob-Referenzen auch nach
 // URL.revokeObjectURL(). Beim Download fordern wir deshalb eine frische
 // blob:-URL an, bevor wir <a download> ausloesen. Ohne das liefert ein
 // Download auf eine revoked-URL 0 Byte (typisches Messenger-Verhalten).
 //
-// Bei content_scripts.all_frames=true laeuft dieses Script in jedem Frame.
+// Bei content_scripts.all_frames=true läuft dieses Script in jedem Frame.
 // Der Service-Worker schickt DOWNLOAD_BLOB an alle Frames; nur der Frame,
 // der die URL wirklich kennt, antwortet -- andere schweigen.
 
@@ -43,7 +43,7 @@
   // Pending finalize-Requests (MSE -> neue Blob-URL)
   var pendingFinalize = new Map();
   var finalizeCounter = 0;
-  // URLs, fuer die bereits ein Auto-Probe per fetch() laeuft oder lief.
+  // URLs, für die bereits ein Auto-Probe per fetch() läuft oder lief.
   var probed = new Set();
 
   function sendToBackground(msg) {
@@ -71,7 +71,7 @@
     var key = kind + '|' + url;
     if (seen.has(key)) {
       // Bereits bekannt. DOM-Scan sendet keine Update-Nachrichten,
-      // die den Hook-MIME ueberschreiben koennten. Der Service-Worker
+      // die den Hook-MIME überschreiben könnten. Der Service-Worker
       // entscheidet beim BLOB_UPDATE selbst, ob ein MIME "besser" ist.
       if (opts && opts.fromDomScan) return;
       sendToBackground({
@@ -97,10 +97,10 @@
       host: meta.host,
       pageUrl: meta.pageUrl
     });
-    // Wenn wir keine Groesse haben (DOM-Scan ohne Hook-Info), versuchen wir
-    // die Bytes per fetch() zu ziehen. Klappt in vielen Faellen sogar wenn
+    // Wenn wir keine Größe haben (DOM-Scan ohne Hook-Info), versuchen wir
+    // die Bytes per fetch() zu ziehen. Klappt in vielen Fällen sogar wenn
     // der Main-Thread-Hook nie getriggert wurde (z.B. weil ein Worker der
-    // Seite die URL erzeugt hat oder wenn Telegram die blob:-URL ueber den
+    // Seite die URL erzeugt hat oder wenn Telegram die blob:-URL über den
     // eigenen ServiceWorker bedient).
     if (kind === 'blob' && !(size > 0) && !probed.has(url)) {
       probed.add(url);
@@ -109,9 +109,9 @@
   }
 
   function probeBlobUrl(url) {
-    // Klein anfangen: nur HEAD-aehnlich per Range 0-1023 holen, damit wir
-    // grosse Dateien nicht unnoetig ziehen. Content-Length liefert uns die
-    // Gesamtgroesse, content-type den echten MIME.
+    // Klein anfangen: nur HEAD-ähnlich per Range 0-1023 holen, damit wir
+    // große Dateien nicht unnötig ziehen. Content-Length liefert uns die
+    // Gesamtgröße, content-type den echten MIME.
     fetch(url, { headers: { Range: 'bytes=0-1023' } }).then(function (resp) {
       if (!resp || !resp.ok && resp.status !== 206) return null;
       var ct = resp.headers && resp.headers.get('content-type') || '';
@@ -122,7 +122,7 @@
       if (m) total = parseInt(m[1], 10);
       else if (cl) total = parseInt(cl, 10);
       if (!total) {
-        // Kein Range-Support -> komplette Response lesen um Groesse zu erfahren
+        // Kein Range-Support -> komplette Response lesen um Größe zu erfahren
         return resp.blob().then(function (b) {
           return { size: (b && b.size) || 0, mime: ct || (b && b.type) || '' };
         });
@@ -195,11 +195,11 @@
   }
 
   // Download-Handler: vom Service-Worker an alle Frames eines Tabs geschickt.
-  // Wichtig: nur der Frame, der die URL tatsaechlich kennt, antwortet. Sonst
-  // antwortet der falsche Frame (mit einer blob:-URL, die er nicht aufloesen
+  // Wichtig: nur der Frame, der die URL tatsächlich kennt, antwortet. Sonst
+  // antwortet der falsche Frame (mit einer blob:-URL, die er nicht auflösen
   // kann) zuerst -- das endete in 0-Byte-Downloads bei Messengern und Playern
   // mit iframes. Unbekannte Frames kehren ohne sendResponse und ohne
-  // "return true" zurueck, sodass Chrome auf den richtigen Frame wartet.
+  // "return true" zurück, sodass Chrome auf den richtigen Frame wartet.
   chrome.runtime.onMessage.addListener(function (msg, _sender, sendResponse) {
     if (!msg || !msg.type) return;
 
@@ -246,10 +246,10 @@
     var kind = msg.kind || 'blob';
     var filename = msg.filename || 'download.bin';
 
-    // Bevorzugter Pfad: Der Hook (MAIN world) loest den Download SELBST aus.
+    // Bevorzugter Pfad: Der Hook (MAIN world) löst den Download SELBST aus.
     // Dort lebt der Blob, dort ist der richtige Kontext. Das umgeht sowohl
-    // das Revoke-Problem (Hook haelt Referenz) als auch das
-    // Cross-Origin-Problem (kein Frame-Hop fuer den <a download>-Click).
+    // das Revoke-Problem (Hook hält Referenz) als auch das
+    // Cross-Origin-Problem (kein Frame-Hop für den <a download>-Click).
     return new Promise(function (resolve) {
       var requestId = 'd' + ++finalizeCounter;
       var timeout = setTimeout(function () {
@@ -271,7 +271,7 @@
           return;
         }
         // Hook konnte nicht liefern: Bytes per fetch(url) holen. Das geht
-        // in vielen Faellen, auch wenn der Hook die URL nie gesehen hat
+        // in vielen Fällen, auch wenn der Hook die URL nie gesehen hat
         // (z.B. Blob aus einem ServiceWorker der Seite). Fetch scheitert
         // nur, wenn die URL wirklich revoked/invalidiert ist.
         fetchAndDownload(url, filename)
@@ -315,7 +315,7 @@
       if (!b || b.size === 0) throw new Error('blob-empty');
       var freshUrl = URL.createObjectURL(b);
       return triggerDownload(freshUrl, filename).then(function () {
-        // Etwas Zeit lassen, damit der Browser die URL fuer den Download noch aufloest
+        // Etwas Zeit lassen, damit der Browser die URL für den Download noch auflöst
         setTimeout(function () {
           try { URL.revokeObjectURL(freshUrl); } catch (_e) {}
         }, 10000);
@@ -346,7 +346,7 @@
     });
   }
 
-  // DOM-Scan: Fallback fuer blob:-URLs, die vor Hook-Injektion entstanden.
+  // DOM-Scan: Fallback für blob:-URLs, die vor Hook-Injektion entstanden.
   // Deckt jetzt auch Custom Elements (z.B. <audio-element>) und beliebige
   // Attribute ab, die eine blob:-URL halten -- moderne Web-Apps verstecken
   // Player oft in Shadow/Custom-Komponenten, nicht in nativen <audio>-Tags.

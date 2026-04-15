@@ -51,8 +51,8 @@ async function loadOptions() {
 
 /**
  * Sichere Variante von chrome.tabs.sendMessage: konsumiert chrome.runtime.lastError
- * im Callback, damit Chrome keine "Uncaught (in promise)"-Warnung fuer geschlossene
- * Tabs loggt. Gibt immer ein Result-Objekt zurueck, wirft nie.
+ * im Callback, damit Chrome keine "Uncaught (in promise)"-Warnung für geschlossene
+ * Tabs loggt. Gibt immer ein Result-Objekt zurück, wirft nie.
  */
 function sendToTab(tabId, message) {
   return new Promise((resolve) => {
@@ -132,7 +132,7 @@ function isSpecificMime(mime) {
 
 function adoptMime(oldMime, newMime) {
   // Neuer MIME gewinnt nur, wenn er spezifischer ist als der alte.
-  // Ein spaeter eintreffender Wildcard (z.B. "audio/*" vom DOM-Scan) darf
+  // Ein später eintreffender Wildcard (z.B. "audio/*" vom DOM-Scan) darf
   // einen schon vom Hook gesetzten echten MIME nicht zerstoeren.
   if (!newMime) return oldMime;
   if (!isSpecificMime(oldMime) && (isSpecificMime(newMime) || newMime)) {

@@ -37,9 +37,9 @@ const el = {
 let activeTabId = null;
 let currentFilter = 'all';
 let pollTimer = null;
-// URL -> vom Nutzer editierter Dateiname (ueberschreibt das Pattern)
+// URL -> vom Nutzer editierter Dateiname (überschreibt das Pattern)
 const customNames = new Map();
-// URL, deren Karte gerade im Edit-Modus ist (Re-Render ueberspringen)
+// URL, deren Karte gerade im Edit-Modus ist (Re-Render überspringen)
 let editingUrl = null;
 
 function t(key, subs) {
@@ -248,7 +248,7 @@ function renderCard(item) {
   }
   card.appendChild(fnameRow);
 
-  // Endungs-Vorschlaege passend zur Kategorie -- Klick wechselt nur die
+  // Endungs-Vorschläge passend zur Kategorie -- Klick wechselt nur die
   // Endung im Dateinamen (Custom-Name wird gesetzt/aktualisiert).
   const sugList = EXT_SUGGESTIONS[item.category] || EXT_SUGGESTIONS.other;
   const currentExt = (predictedName.split('.').pop() || '').toLowerCase();
@@ -279,7 +279,7 @@ function renderCard(item) {
   download.title = ready ? t('tooltipDownload') : t('tooltipDownloadTry');
   // Auch bei size=0 erlauben: der Detector hat einen fetch-Fallback,
   // der die Bytes vielleicht doch noch ziehen kann. Disabled wirkt
-  // sonst irrefuehrend ('keine Aktion moeglich').
+  // sonst irreführend ('keine Aktion möglich').
   download.innerHTML =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
   const dlLabel = document.createElement('span');
