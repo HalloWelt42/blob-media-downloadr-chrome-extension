@@ -238,6 +238,19 @@ main {
   font-variant-numeric: tabular-nums;
 }
 
+.blob-filename {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  background: var(--bg-base);
+  padding: 3px 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px dashed var(--border-subtle);
+}
+
 .blob-actions {
   display: flex;
   gap: 6px;

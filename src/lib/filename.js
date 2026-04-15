@@ -2,17 +2,18 @@
 // Copyright (c) 2026 HalloWelt42
 //
 // Dateinamen-Muster ausrollen. Unterstützt die Tokens:
-//   {host}   -> Host der Quelle (bereinigt)
-//   {date}   -> YYYYMMDD
-//   {time}   -> HHMMSS
-//   {mime}   -> MIME-Type (Slash -> -)
-//   {ext}    -> Datei-Endung (ohne Punkt)
-//   {index}  -> laufender Index im Tab (3-stellig)
-//   {title}  -> Seitentitel (bereinigt)
+//   {host}     -> Host der Quelle (bereinigt)
+//   {date}     -> YYYYMMDD
+//   {time}     -> HHMMSS
+//   {mime}     -> MIME-Type (Slash -> -)
+//   {ext}      -> Datei-Endung (ohne Punkt)
+//   {index}    -> laufender Index im Tab (3-stellig)
+//   {title}    -> Seitentitel (bereinigt)
+//   {category} -> Kategorie (audio / video / image / document / other)
 
-import { extForMime } from './mime-ext.js';
+import { extForMime, categoryForMime } from './mime-ext.js';
 
-export const DEFAULT_PATTERN = '{host}-{date}-{time}-{index}.{ext}';
+export const DEFAULT_PATTERN = '{host}-{category}-{date}-{time}-{index}.{ext}';
 
 /**
  * Entfernt oder ersetzt Zeichen, die im Dateisystem Probleme machen.
@@ -59,6 +60,7 @@ export function renderFilename(ctx) {
     title: sanitize(ctx.title || '', 80),
     mime: sanitize((ctx.mimeType || 'application-octet-stream').replace(/\//g, '-'), 40),
     ext: extForMime(ctx.mimeType || ''),
+    category: categoryForMime(ctx.mimeType || ''),
     index: pad(ctx.index || 1, 3),
     date: '' + y + mo + d,
     time: '' + hh + mm + ss

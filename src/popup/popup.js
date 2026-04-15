@@ -1,6 +1,20 @@
 // SPDX-License-Identifier: LicenseRef-BlobMediaDownloadr-NC-2.0
 // Copyright (c) 2026 HalloWelt42
 
+import { renderFilename, DEFAULT_PATTERN } from '../lib/filename.js';
+
+let currentPattern = DEFAULT_PATTERN;
+
+async function loadPattern() {
+  try {
+    const raw = await chrome.storage.sync.get('options');
+    const p = raw && raw.options && raw.options.filenamePattern;
+    currentPattern = (typeof p === 'string' && p.trim()) ? p : DEFAULT_PATTERN;
+  } catch (_e) {
+    currentPattern = DEFAULT_PATTERN;
+  }
+}
+
 const el = {
   filterBar: document.getElementById('filter-bar'),
   empty: document.getElementById('empty-state'),
@@ -182,6 +196,21 @@ function renderCard(item) {
   meta.appendChild(time);
   card.appendChild(meta);
 
+  // Zeile 3: vorschaubarer Dateiname (damit man vor Download weiss, was landet)
+  const fname = document.createElement('div');
+  fname.className = 'blob-filename';
+  const predictedName = renderFilename({
+    host: item.host,
+    title: item.pageTitle,
+    mimeType: item.mimeType,
+    index: item.indexInTab,
+    date: new Date(item.capturedAt || Date.now()),
+    pattern: currentPattern
+  });
+  fname.textContent = predictedName;
+  fname.title = predictedName;
+  card.appendChild(fname);
+
   // Zeile 3: Buttons
   const actions = document.createElement('div');
   actions.className = 'blob-actions';
@@ -287,6 +316,7 @@ function onFilterClick(ev) {
 }
 
 async function init() {
+  await loadPattern();
   const tab = await getActiveTab();
   if (tab) activeTabId = tab.id;
 

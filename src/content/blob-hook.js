@@ -20,6 +20,14 @@
   window.__BMBD_HOOK_INSTALLED__ = true;
 
   var NS = '__BMBD__';
+  // Debug kann per DevTools-Konsole aktiviert werden:
+  //   window.__BMBD_DEBUG__ = true
+  // Dann loggt der Hook Capture, Revoke, Finalize und Download mit Groessen.
+  function dbg() {
+    if (window.__BMBD_DEBUG__) {
+      try { console.log.apply(console, ['[BMBD]'].concat([].slice.call(arguments))); } catch (_e) {}
+    }
+  }
 
   // Original-Referenzen sichern, bevor Seiten-Code sie evtl. ersetzt
   var origCreateObjectURL = URL.createObjectURL;
@@ -73,6 +81,7 @@
           size: obj.size,
           createdAt: Date.now()
         });
+        dbg('Blob erfasst', obj.type, obj.size, 'Bytes, URL:', url);
         post('BLOB_CAPTURED', {
           url: url,
           mimeType: obj.type || '',
@@ -276,6 +285,14 @@
   });
 
   function downloadHere(url, kind, filename, requestId) {
+    var meta = blobs.get(url);
+    dbg('DOWNLOAD_HERE', kind, 'url:', url, 'meta:', meta ? {
+      size: meta.size,
+      mime: meta.mimeType,
+      hasBlobRef: !!meta.blob,
+      revoked: !!meta.revoked
+    } : 'nichts bekannt');
+
     // 1) Frischen Blob/URL aus dem gespeicherten Objekt bauen.
     var resolved = null;
     try {
@@ -285,6 +302,7 @@
         resolved = buildBlobUrl(url);
       }
     } catch (e) {
+      dbg('Finalize-Fehler:', e);
       post('DOWNLOAD_HERE_RESULT', {
         requestId: requestId,
         ok: false,
@@ -294,8 +312,10 @@
     }
 
     if (!resolved || !resolved.url) {
-      // Fallback: Original-URL versuchen -- die ist moeglicherweise noch gueltig.
+      dbg('Kein Finalize moeglich, fallback auf Original-URL');
       resolved = { url: url, size: 0 };
+    } else {
+      dbg('Frische URL fuer Download:', resolved.url, 'Groesse:', resolved.size);
     }
 
     try {

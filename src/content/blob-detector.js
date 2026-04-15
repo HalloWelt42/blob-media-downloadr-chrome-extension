@@ -64,16 +64,20 @@
     };
   }
 
-  function reportBlob(kind, url, mimeType, size, isFinal) {
+  function reportBlob(kind, url, mimeType, size, isFinal, opts) {
     if (!url) return;
     var key = kind + '|' + url;
+    var isWildcardMime = !mimeType || /\*/.test(mimeType);
     if (seen.has(key)) {
-      // Nur Größe/Final-Status aktualisieren
+      // Bereits bekannt. Updates nur senden wenn wir echte neue Info haben;
+      // ein DOM-Scan mit Wildcard-MIME wie "audio/*" darf NICHT den echten
+      // MIME vom Hook ueberschreiben.
+      if (opts && opts.fromDomScan) return;
       sendToBackground({
         type: 'BLOB_UPDATE',
         url: url,
         size: size || 0,
-        mimeType: mimeType || '',
+        mimeType: isWildcardMime ? '' : mimeType,
         isFinal: !!isFinal
       });
       return;
@@ -84,7 +88,7 @@
       type: 'BLOB_FOUND',
       kind: kind,
       url: url,
-      mimeType: mimeType || '',
+      mimeType: isWildcardMime ? '' : mimeType,
       size: size || 0,
       isFinal: !!isFinal,
       capturedAt: Date.now(),
