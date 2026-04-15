@@ -126,6 +126,7 @@
         });
         break;
       case 'FINALIZED_URL':
+      case 'DOWNLOAD_HERE_RESULT':
         var handler = pendingFinalize.get(data.requestId);
         if (handler) {
           pendingFinalize.delete(data.requestId);
@@ -193,56 +194,60 @@
     var kind = msg.kind || 'blob';
     var filename = msg.filename || 'download.bin';
 
-    // Wir fragen den Hook IMMER nach einer frischen blob:-URL. Das behebt
-    // zwei Probleme:
-    //   1) Blob wurde per revokeObjectURL ungueltig gemacht (Voice Messages,
-    //      Messenger-Audio) -- der Hook haelt die Blob-Referenz trotzdem.
-    //   2) MediaSource-Streams muessen sowieso aus den gesammelten Chunks
-    //      zu einem Blob zusammengefuehrt werden.
-    return requestFinalize(url, kind)
-      .then(function (freshUrl) {
-        return triggerDownload(freshUrl, filename).then(function () {
-          return { ok: true, resolvedUrl: freshUrl };
-        });
-      })
-      .catch(function (err) {
-        // Fallback: Original-URL probieren (z.B. wenn nur DOM-Scan die URL
-        // kennt und der Hook gar keinen Blob dafuer hat).
-        return triggerDownload(url, filename).then(function () {
-          return { ok: true, resolvedUrl: url, fallback: true };
-        }).catch(function () {
-          throw err;
-        });
-      });
-  }
-
-  function requestFinalize(url, kind) {
-    return new Promise(function (resolve, reject) {
-      var requestId = 'f' + ++finalizeCounter;
+    // Bevorzugter Pfad: Der Hook (MAIN world) loest den Download SELBST aus.
+    // Dort lebt der Blob, dort ist der richtige Kontext. Das umgeht sowohl
+    // das Revoke-Problem (Hook haelt Referenz) als auch das
+    // Cross-Origin-Problem (kein Frame-Hop fuer den <a download>-Click).
+    return new Promise(function (resolve) {
+      var requestId = 'd' + ++finalizeCounter;
       var timeout = setTimeout(function () {
         pendingFinalize.delete(requestId);
-        reject(new Error('finalize-timeout'));
+        // Fallback: selbst versuchen auf Original-URL
+        triggerDownload(url, filename)
+          .then(function () { resolve({ ok: true, fallback: 'timeout' }); })
+          .catch(function (e) { resolve({ ok: false, error: String(e) }); });
       }, 15000);
 
       pendingFinalize.set(requestId, function (data) {
         clearTimeout(timeout);
-        if (!data || !data.url) {
-          reject(new Error((data && data.error) || 'finalize-failed'));
+        if (data && data.ok) {
+          resolve({
+            ok: true,
+            size: data.size || 0,
+            resolvedUrl: data.resolvedUrl
+          });
           return;
         }
-        resolve(data.url);
+        // Hook konnte nicht liefern: versuchen wir den klassischen
+        // ISOLATED-world-Download mit der Original-URL als letzten Versuch.
+        triggerDownload(url, filename)
+          .then(function () {
+            resolve({ ok: true, fallback: (data && data.error) || 'hook-failed' });
+          })
+          .catch(function (e) {
+            resolve({
+              ok: false,
+              error: (data && data.error) || String(e)
+            });
+          });
       });
 
-      var type = kind === 'mse' ? 'MSE_FINALIZE_REQUEST' : 'BLOB_FINALIZE_REQUEST';
       try {
         window.postMessage(
-          { __ns: NS, type: type, url: url, requestId: requestId },
+          {
+            __ns: NS,
+            type: 'DOWNLOAD_HERE',
+            url: url,
+            kind: kind,
+            filename: filename,
+            requestId: requestId
+          },
           '*'
         );
       } catch (e) {
         clearTimeout(timeout);
         pendingFinalize.delete(requestId);
-        reject(e);
+        resolve({ ok: false, error: String(e) });
       }
     });
   }

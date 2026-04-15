@@ -253,6 +253,11 @@
       finalizeMse(data.url, data.requestId);
     } else if (data.type === 'BLOB_FINALIZE_REQUEST' && data.url) {
       finalizeBlob(data.url, data.requestId);
+    } else if (data.type === 'DOWNLOAD_HERE' && data.url) {
+      // Download direkt im Seiten-Kontext ausloesen, dort wo der Blob lebt.
+      // Das umgeht Cross-Frame-/Cross-Origin- und Revoke-Probleme, die
+      // ISOLATED-world-Downloads regelmaessig mit 0-Byte-Dateien bestraften.
+      downloadHere(data.url, data.kind || 'blob', data.filename || 'download.bin', data.requestId);
     } else if (data.type === 'BLOB_REVOKE_REQUEST' && data.url) {
       // User hat einen Eintrag wirklich entfernt: jetzt endgueltig aufraeumen.
       try {
@@ -269,6 +274,90 @@
       }
     }
   });
+
+  function downloadHere(url, kind, filename, requestId) {
+    // 1) Frischen Blob/URL aus dem gespeicherten Objekt bauen.
+    var resolved = null;
+    try {
+      if (kind === 'mse') {
+        resolved = buildMseBlobUrl(url);
+      } else {
+        resolved = buildBlobUrl(url);
+      }
+    } catch (e) {
+      post('DOWNLOAD_HERE_RESULT', {
+        requestId: requestId,
+        ok: false,
+        error: String(e && e.message ? e.message : e)
+      });
+      return;
+    }
+
+    if (!resolved || !resolved.url) {
+      // Fallback: Original-URL versuchen -- die ist moeglicherweise noch gueltig.
+      resolved = { url: url, size: 0 };
+    }
+
+    try {
+      var a = document.createElement('a');
+      a.href = resolved.url;
+      a.download = filename;
+      a.rel = 'noopener';
+      a.style.display = 'none';
+      (document.body || document.documentElement).appendChild(a);
+      a.click();
+      setTimeout(function () {
+        if (a.parentNode) a.parentNode.removeChild(a);
+      }, 100);
+      post('DOWNLOAD_HERE_RESULT', {
+        requestId: requestId,
+        ok: true,
+        size: resolved.size || 0,
+        resolvedUrl: resolved.url
+      });
+    } catch (e) {
+      post('DOWNLOAD_HERE_RESULT', {
+        requestId: requestId,
+        ok: false,
+        error: String(e && e.message ? e.message : e)
+      });
+    }
+  }
+
+  function buildBlobUrl(url) {
+    var meta = blobs.get(url);
+    if (!meta || meta.kind !== 'blob' || !meta.blob) return null;
+    var newUrl = origCreateObjectURL.call(URL, meta.blob);
+    blobs.set(newUrl, {
+      kind: 'blob',
+      blob: meta.blob,
+      mimeType: meta.mimeType,
+      size: meta.blob.size,
+      createdAt: Date.now()
+    });
+    return { url: newUrl, size: meta.blob.size };
+  }
+
+  function buildMseBlobUrl(url) {
+    var meta = blobs.get(url);
+    if (!meta || meta.kind !== 'mse' || !meta.mediaSource) return null;
+    var msEntry = msMap.get(meta.mediaSource);
+    if (!msEntry) return null;
+    var bufIndex = pickPrimaryBuffer(msEntry);
+    var chunks = msEntry.buffers[bufIndex] || [];
+    var mime = msEntry.buffersMime[bufIndex] || msEntry.mimeType || '';
+    if (!chunks.length) return null;
+    var blob = new Blob(chunks, { type: mime });
+    var newUrl = origCreateObjectURL.call(URL, blob);
+    blobs.set(newUrl, {
+      kind: 'blob',
+      blob: blob,
+      mimeType: mime,
+      size: blob.size,
+      createdAt: Date.now()
+    });
+    return { url: newUrl, size: blob.size };
+  }
 
   function finalizeBlob(url, requestId) {
     var meta = blobs.get(url);
