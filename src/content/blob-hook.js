@@ -108,16 +108,21 @@
     return url;
   };
 
-  // URL.revokeObjectURL hooken
+  // URL.revokeObjectURL hooken.
+  // Wichtig: wir entfernen den Eintrag NICHT aus blobs, wir markieren ihn nur.
+  // Das Blob-Objekt bleibt damit erreichbar und wir koennen beim Download eine
+  // frische blob:-URL daraus erzeugen. Ohne das liefert <a download> auf eine
+  // revoked-URL 0 Byte (typisches Verhalten z.B. bei Messenger-Sprachnachrichten).
   URL.revokeObjectURL = function (url) {
     try {
       if (blobs.has(url)) {
         var meta = blobs.get(url);
-        blobs.delete(url);
-        if (meta && meta.kind === 'mse' && meta.mediaSource) {
-          msMap.delete(meta.mediaSource);
+        meta.revoked = true;
+        // MSE kann nach Revoke nicht mehr weiter wachsen -- finalisieren wenn noch nicht geschehen.
+        if (meta.kind === 'mse' && meta.mediaSource) {
+          var msEntry = msMap.get(meta.mediaSource);
+          if (msEntry) msEntry.isFinal = true;
         }
-        post('BLOB_REVOKED', { url: url });
       }
     } catch (_e) {
       /* ignorieren */
@@ -237,8 +242,8 @@
     return null;
   }
 
-  // Finalisierungs-Request vom Detector: Chunks zusammenführen, neuen
-  // Blob und blob-URL erzeugen und melden.
+  // Finalisierungs-Request vom Detector: aus dem gespeicherten Blob bzw. den
+  // gesammelten MSE-Chunks eine frische blob:-URL erzeugen und zuruecksenden.
   window.addEventListener('message', function (ev) {
     if (ev.source !== window) return;
     var data = ev.data;
@@ -246,20 +251,68 @@
 
     if (data.type === 'MSE_FINALIZE_REQUEST' && data.url) {
       finalizeMse(data.url, data.requestId);
+    } else if (data.type === 'BLOB_FINALIZE_REQUEST' && data.url) {
+      finalizeBlob(data.url, data.requestId);
     } else if (data.type === 'BLOB_REVOKE_REQUEST' && data.url) {
-      // Detector bittet um Revoke (z.B. weil Eintrag entfernt wurde)
+      // User hat einen Eintrag wirklich entfernt: jetzt endgueltig aufraeumen.
       try {
-        URL.revokeObjectURL(data.url);
+        var meta = blobs.get(data.url);
+        if (meta) {
+          if (meta.kind === 'mse' && meta.mediaSource) {
+            msMap.delete(meta.mediaSource);
+          }
+          blobs.delete(data.url);
+        }
+        origRevokeObjectURL.call(URL, data.url);
       } catch (_e) {
         /* ignorieren */
       }
     }
   });
 
+  function finalizeBlob(url, requestId) {
+    var meta = blobs.get(url);
+    if (!meta || meta.kind !== 'blob' || !meta.blob) {
+      post('FINALIZED_URL', {
+        requestId: requestId,
+        sourceUrl: url,
+        url: null,
+        error: 'not-found'
+      });
+      return;
+    }
+    try {
+      // Frische URL aus dem noch gehaltenen Blob-Objekt. Funktioniert auch
+      // nachdem die Original-URL per revokeObjectURL ungueltig wurde.
+      var newUrl = origCreateObjectURL.call(URL, meta.blob);
+      blobs.set(newUrl, {
+        kind: 'blob',
+        blob: meta.blob,
+        mimeType: meta.mimeType,
+        size: meta.blob.size,
+        createdAt: Date.now()
+      });
+      post('FINALIZED_URL', {
+        requestId: requestId,
+        sourceUrl: url,
+        url: newUrl,
+        mimeType: meta.mimeType || meta.blob.type || '',
+        size: meta.blob.size
+      });
+    } catch (e) {
+      post('FINALIZED_URL', {
+        requestId: requestId,
+        sourceUrl: url,
+        url: null,
+        error: String(e && e.message ? e.message : e)
+      });
+    }
+  }
+
   function finalizeMse(url, requestId) {
     var meta = blobs.get(url);
     if (!meta || meta.kind !== 'mse' || !meta.mediaSource) {
-      post('MSE_FINALIZED_URL', {
+      post('FINALIZED_URL', {
         requestId: requestId,
         sourceUrl: url,
         url: null,
@@ -270,7 +323,7 @@
     var ms = meta.mediaSource;
     var msEntry = msMap.get(ms);
     if (!msEntry) {
-      post('MSE_FINALIZED_URL', {
+      post('FINALIZED_URL', {
         requestId: requestId,
         sourceUrl: url,
         url: null,
@@ -288,7 +341,7 @@
       var chunks = msEntry.buffers[bufIndex] || [];
       var mime = msEntry.buffersMime[bufIndex] || msEntry.mimeType || '';
       if (!chunks.length) {
-        post('MSE_FINALIZED_URL', {
+        post('FINALIZED_URL', {
           requestId: requestId,
           sourceUrl: url,
           url: null,
@@ -299,7 +352,6 @@
       var blob = new Blob(chunks, { type: mime });
       var newUrl = origCreateObjectURL.call(URL, blob);
 
-      // Damit der Detector den neuen Blob auch kennt:
       blobs.set(newUrl, {
         kind: 'blob',
         blob: blob,
@@ -307,7 +359,7 @@
         size: blob.size,
         createdAt: Date.now()
       });
-      post('MSE_FINALIZED_URL', {
+      post('FINALIZED_URL', {
         requestId: requestId,
         sourceUrl: url,
         url: newUrl,
@@ -315,7 +367,7 @@
         size: blob.size
       });
     } catch (e) {
-      post('MSE_FINALIZED_URL', {
+      post('FINALIZED_URL', {
         requestId: requestId,
         sourceUrl: url,
         url: null,

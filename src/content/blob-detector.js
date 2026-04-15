@@ -3,10 +3,19 @@
 //
 // ISOLATED-world-Content-Script.
 //   - Injiziert blob-hook.js in die MAIN world (via <script src>)
-//   - Lauscht auf Hook-Messages (BLOB_CAPTURED / BLOB_REVOKED / MSE_*)
+//   - Lauscht auf Hook-Messages (BLOB_CAPTURED / MSE_* / FINALIZED_URL)
 //   - Meldet Metadaten an den Service-Worker
 //   - Scannt DOM nach <video|audio|img|source|a> mit blob:-URL (Fallback)
 //   - Führt DOWNLOAD_BLOB / REVOKE_BLOB vom Service-Worker aus
+//
+// Wichtig: Der Hook in blob-hook.js haelt Blob-Referenzen auch nach
+// URL.revokeObjectURL(). Beim Download fordern wir deshalb eine frische
+// blob:-URL an, bevor wir <a download> ausloesen. Ohne das liefert ein
+// Download auf eine revoked-URL 0 Byte (typisches Messenger-Verhalten).
+//
+// Bei content_scripts.all_frames=true laeuft dieses Script in jedem Frame.
+// Der Service-Worker schickt DOWNLOAD_BLOB an alle Frames; nur der Frame,
+// der die URL wirklich kennt, antwortet -- andere schweigen.
 
 (function () {
   'use strict';
@@ -85,12 +94,6 @@
     });
   }
 
-  function reportRevoke(url) {
-    seen.delete('blob|' + url);
-    seen.delete('mse|' + url);
-    sendToBackground({ type: 'BLOB_REVOKED', url: url });
-  }
-
   // Nachrichten aus MAIN world (Hook) empfangen
   window.addEventListener('message', function (ev) {
     if (ev.source !== window) return;
@@ -100,9 +103,6 @@
     switch (data.type) {
       case 'BLOB_CAPTURED':
         reportBlob('blob', data.url, data.mimeType, data.size, true);
-        break;
-      case 'BLOB_REVOKED':
-        reportRevoke(data.url);
         break;
       case 'MSE_CAPTURED':
         reportBlob('mse', data.url, data.mimeType, data.size || 0, false);
@@ -125,7 +125,7 @@
           isFinal: true
         });
         break;
-      case 'MSE_FINALIZED_URL':
+      case 'FINALIZED_URL':
         var handler = pendingFinalize.get(data.requestId);
         if (handler) {
           pendingFinalize.delete(data.requestId);
@@ -137,10 +137,23 @@
     }
   });
 
-  // Download-Handler: vom Service-Worker angefordert
+  function knowsUrl(url) {
+    return seen.has('blob|' + url) || seen.has('mse|' + url);
+  }
+
+  // Download-Handler: vom Service-Worker an alle Frames eines Tabs geschickt.
+  // Wichtig: nur der Frame, der die URL tatsaechlich kennt, antwortet. Sonst
+  // antwortet der falsche Frame (mit einer blob:-URL, die er nicht aufloesen
+  // kann) zuerst -- das endete in 0-Byte-Downloads bei Messengern und Playern
+  // mit iframes. Unbekannte Frames kehren ohne sendResponse und ohne
+  // "return true" zurueck, sodass Chrome auf den richtigen Frame wartet.
   chrome.runtime.onMessage.addListener(function (msg, _sender, sendResponse) {
     if (!msg || !msg.type) return;
+
     if (msg.type === 'DOWNLOAD_BLOB') {
+      if (!knowsUrl(msg.url)) {
+        return false; // anderer Frame ist zustaendig
+      }
       handleDownload(msg)
         .then(function (result) {
           sendResponse(result);
@@ -148,20 +161,27 @@
         .catch(function (err) {
           sendResponse({ ok: false, error: String(err) });
         });
-      return true; // async Response
+      return true;
     }
+
     if (msg.type === 'REVOKE_BLOB') {
+      if (!knowsUrl(msg.url)) {
+        return false;
+      }
       try {
         window.postMessage(
           { __ns: NS, type: 'BLOB_REVOKE_REQUEST', url: msg.url },
           '*'
         );
+        seen.delete('blob|' + msg.url);
+        seen.delete('mse|' + msg.url);
         sendResponse({ ok: true });
       } catch (e) {
         sendResponse({ ok: false, error: String(e) });
       }
       return false;
     }
+
     if (msg.type === 'PING') {
       sendResponse({ ok: true });
       return false;
@@ -169,53 +189,60 @@
   });
 
   function handleDownload(msg) {
-    return new Promise(function (resolve, reject) {
-      var url = msg.url;
-      var kind = msg.kind || 'blob';
-      var filename = msg.filename || 'download.bin';
+    var url = msg.url;
+    var kind = msg.kind || 'blob';
+    var filename = msg.filename || 'download.bin';
 
-      if (kind === 'mse') {
-        // Hook um Finalisierung bitten
-        var requestId = 'f' + ++finalizeCounter;
-        var timeout = setTimeout(function () {
-          pendingFinalize.delete(requestId);
-          reject(new Error('finalize-timeout'));
-        }, 15000);
-
-        pendingFinalize.set(requestId, function (data) {
-          clearTimeout(timeout);
-          if (!data.url) {
-            reject(new Error(data.error || 'finalize-failed'));
-            return;
-          }
-          triggerDownload(data.url, filename)
-            .then(function () {
-              resolve({ ok: true, resolvedUrl: data.url });
-            })
-            .catch(reject);
+    // Wir fragen den Hook IMMER nach einer frischen blob:-URL. Das behebt
+    // zwei Probleme:
+    //   1) Blob wurde per revokeObjectURL ungueltig gemacht (Voice Messages,
+    //      Messenger-Audio) -- der Hook haelt die Blob-Referenz trotzdem.
+    //   2) MediaSource-Streams muessen sowieso aus den gesammelten Chunks
+    //      zu einem Blob zusammengefuehrt werden.
+    return requestFinalize(url, kind)
+      .then(function (freshUrl) {
+        return triggerDownload(freshUrl, filename).then(function () {
+          return { ok: true, resolvedUrl: freshUrl };
         });
+      })
+      .catch(function (err) {
+        // Fallback: Original-URL probieren (z.B. wenn nur DOM-Scan die URL
+        // kennt und der Hook gar keinen Blob dafuer hat).
+        return triggerDownload(url, filename).then(function () {
+          return { ok: true, resolvedUrl: url, fallback: true };
+        }).catch(function () {
+          throw err;
+        });
+      });
+  }
 
-        try {
-          window.postMessage(
-            {
-              __ns: NS,
-              type: 'MSE_FINALIZE_REQUEST',
-              url: url,
-              requestId: requestId
-            },
-            '*'
-          );
-        } catch (e) {
-          clearTimeout(timeout);
-          pendingFinalize.delete(requestId);
-          reject(e);
+  function requestFinalize(url, kind) {
+    return new Promise(function (resolve, reject) {
+      var requestId = 'f' + ++finalizeCounter;
+      var timeout = setTimeout(function () {
+        pendingFinalize.delete(requestId);
+        reject(new Error('finalize-timeout'));
+      }, 15000);
+
+      pendingFinalize.set(requestId, function (data) {
+        clearTimeout(timeout);
+        if (!data || !data.url) {
+          reject(new Error((data && data.error) || 'finalize-failed'));
+          return;
         }
-      } else {
-        triggerDownload(url, filename)
-          .then(function () {
-            resolve({ ok: true });
-          })
-          .catch(reject);
+        resolve(data.url);
+      });
+
+      var type = kind === 'mse' ? 'MSE_FINALIZE_REQUEST' : 'BLOB_FINALIZE_REQUEST';
+      try {
+        window.postMessage(
+          { __ns: NS, type: type, url: url, requestId: requestId },
+          '*'
+        );
+      } catch (e) {
+        clearTimeout(timeout);
+        pendingFinalize.delete(requestId);
+        reject(e);
       }
     });
   }
