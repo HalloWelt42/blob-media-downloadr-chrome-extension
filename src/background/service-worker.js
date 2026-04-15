@@ -49,6 +49,29 @@ async function loadOptions() {
   }
 }
 
+/**
+ * Sichere Variante von chrome.tabs.sendMessage: konsumiert chrome.runtime.lastError
+ * im Callback, damit Chrome keine "Uncaught (in promise)"-Warnung fuer geschlossene
+ * Tabs loggt. Gibt immer ein Result-Objekt zurueck, wirft nie.
+ */
+function sendToTab(tabId, message) {
+  return new Promise((resolve) => {
+    try {
+      chrome.tabs.sendMessage(tabId, message, (response) => {
+        // Zugriff auf lastError signalisiert dem Browser "behandelt"
+        const err = chrome.runtime.lastError;
+        if (err) {
+          resolve({ ok: false, error: err.message || 'unknown' });
+          return;
+        }
+        resolve({ ok: true, response });
+      });
+    } catch (e) {
+      resolve({ ok: false, error: String(e && e.message ? e.message : e) });
+    }
+  });
+}
+
 function hostMatches(host, rules) {
   if (!Array.isArray(rules) || !rules.length) return false;
   const h = (host || '').toLowerCase();
@@ -201,17 +224,16 @@ async function startDownload(tabId, meta, optsMaybe) {
     index: meta.indexInTab,
     pattern: opts.filenamePattern
   });
-  try {
-    await chrome.tabs.sendMessage(tabId, {
-      type: 'DOWNLOAD_BLOB',
-      url: meta.url,
-      kind: meta.kind,
-      filename
-    });
-    return { ok: true, filename };
-  } catch (e) {
-    return { ok: false, error: String(e && e.message ? e.message : e) };
+  const result = await sendToTab(tabId, {
+    type: 'DOWNLOAD_BLOB',
+    url: meta.url,
+    kind: meta.kind,
+    filename
+  });
+  if (!result.ok) {
+    return { ok: false, error: result.error };
   }
+  return { ok: true, filename };
 }
 
 function serializeState(tabId) {
@@ -286,14 +308,10 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           map.delete(msg.url);
           const done = autoDownloaded.get(msg.tabId);
           if (done) done.delete(msg.url);
-          try {
-            await chrome.tabs.sendMessage(msg.tabId, {
-              type: 'REVOKE_BLOB',
-              url: msg.url
-            });
-          } catch (_e) {
-            /* Tab ggf. weg */
-          }
+          await sendToTab(msg.tabId, {
+            type: 'REVOKE_BLOB',
+            url: msg.url
+          });
           updateBadge(msg.tabId);
         }
         sendResponse({ ok: true });
@@ -309,14 +327,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           map.clear();
           autoDownloaded.delete(msg.tabId);
           for (const url of urls) {
-            try {
-              await chrome.tabs.sendMessage(msg.tabId, {
-                type: 'REVOKE_BLOB',
-                url
-              });
-            } catch (_e) {
-              /* ignorieren */
-            }
+            await sendToTab(msg.tabId, { type: 'REVOKE_BLOB', url });
           }
           updateBadge(msg.tabId);
         }
