@@ -98,20 +98,33 @@ function bumpIndex(tabId) {
   return n;
 }
 
+/**
+ * Ruft eine chrome.action-API sicher auf. Diese APIs liefern in MV3 einen
+ * Promise, der rejectet wenn die Tab-ID nicht mehr existiert ("No tab with
+ * id: ..."). Sync-try/catch fängt das NICHT; der Promise landet als
+ * "Uncaught (in promise)" im Extension-Error-Log. Deshalb .catch() direkt.
+ */
+function safeActionCall(fn, args) {
+  try {
+    const result = fn(args);
+    if (result && typeof result.then === 'function') {
+      result.catch(() => {});
+    }
+  } catch (_e) {
+    /* ignorieren */
+  }
+}
+
 function updateBadge(tabId) {
   const m = tabBlobs.get(tabId);
   const count = m ? m.size : 0;
   const text = count > 0 ? String(count) : '';
-  try {
-    chrome.action.setBadgeText({ tabId, text });
-    if (count > 0) {
-      chrome.action.setBadgeBackgroundColor({ tabId, color: '#d97706' });
-      if (chrome.action.setBadgeTextColor) {
-        chrome.action.setBadgeTextColor({ tabId, color: '#ffffff' });
-      }
+  safeActionCall(chrome.action.setBadgeText, { tabId, text });
+  if (count > 0) {
+    safeActionCall(chrome.action.setBadgeBackgroundColor, { tabId, color: '#d97706' });
+    if (chrome.action.setBadgeTextColor) {
+      safeActionCall(chrome.action.setBadgeTextColor, { tabId, color: '#ffffff' });
     }
-  } catch (_e) {
-    /* tab evtl. weg */
   }
 }
 
@@ -119,11 +132,7 @@ function clearTab(tabId) {
   tabBlobs.delete(tabId);
   tabIndex.delete(tabId);
   autoDownloaded.delete(tabId);
-  try {
-    chrome.action.setBadgeText({ tabId, text: '' });
-  } catch (_e) {
-    /* ignorieren */
-  }
+  safeActionCall(chrome.action.setBadgeText, { tabId, text: '' });
 }
 
 function isSpecificMime(mime) {
@@ -295,10 +304,14 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 
   switch (msg.type) {
     case 'BLOB_FOUND':
-      if (fromTabId != null) handleBlobFound(msg, fromTabId);
+      if (fromTabId != null) {
+        handleBlobFound(msg, fromTabId).catch(() => {});
+      }
       return false;
     case 'BLOB_UPDATE':
-      if (fromTabId != null) handleBlobUpdate(msg, fromTabId);
+      if (fromTabId != null) {
+        handleBlobUpdate(msg, fromTabId).catch(() => {});
+      }
       return false;
     case 'BLOB_REVOKED':
       if (fromTabId != null) handleBlobRevoked(msg, fromTabId);
