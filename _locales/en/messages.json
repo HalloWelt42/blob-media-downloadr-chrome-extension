@@ -8,7 +8,6 @@
   "appDefaultTitle": {
     "message": "Browser Media Blob Downloadr"
   },
-
   "popupHeaderTitle": {
     "message": "Blob Downloadr"
   },
@@ -27,7 +26,6 @@
   "popupBtnClear": {
     "message": "Clear list"
   },
-
   "filterAll": {
     "message": "All"
   },
@@ -46,7 +44,6 @@
   "filterOther": {
     "message": "Other"
   },
-
   "listSource": {
     "message": "Source"
   },
@@ -74,7 +71,6 @@
   "listUnknownTitle": {
     "message": "Untitled page"
   },
-
   "tooltipRefresh": {
     "message": "Refresh list"
   },
@@ -96,7 +92,6 @@
   "tooltipGithub": {
     "message": "Project on GitHub"
   },
-
   "toastDownloadStarted": {
     "message": "Download started"
   },
@@ -112,7 +107,6 @@
   "toastMseNotReady": {
     "message": "Stream is still recording, download will use the current buffer"
   },
-
   "optionsTitle": {
     "message": "Options"
   },
@@ -179,14 +173,12 @@
   "optionsResetToast": {
     "message": "Settings reset"
   },
-
   "aboutPrivacy": {
     "message": "Privacy"
   },
   "aboutSource": {
     "message": "Source code on GitHub"
   },
-
   "donateTitle": {
     "message": "Say thanks"
   },
@@ -211,7 +203,6 @@
   "donateThanks": {
     "message": "Thanks a lot -- stay curious."
   },
-
   "unitBytes": {
     "message": "B"
   },
@@ -224,15 +215,25 @@
   "unitGigabytes": {
     "message": "GB"
   },
-
   "kindBlob": {
     "message": "Blob"
   },
   "kindMse": {
     "message": "Stream"
   },
-
   "filenameDefaultPattern": {
     "message": "{host}-{date}-{time}-{index}.{ext}"
+  },
+  "listWaiting": {
+    "message": "Waiting"
+  },
+  "listWaitingHint": {
+    "message": "Play the media on the page so the blob is created."
+  },
+  "listFilenameCustom": {
+    "message": "Custom"
+  },
+  "tooltipEditFilename": {
+    "message": "Edit file name"
   }
 }

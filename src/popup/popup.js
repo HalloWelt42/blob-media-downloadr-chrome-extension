@@ -29,6 +29,10 @@ const el = {
 let activeTabId = null;
 let currentFilter = 'all';
 let pollTimer = null;
+// URL -> vom Nutzer editierter Dateiname (ueberschreibt das Pattern)
+const customNames = new Map();
+// URL, deren Karte gerade im Edit-Modus ist (Re-Render ueberspringen)
+let editingUrl = null;
 
 function t(key, subs) {
   try {
@@ -139,12 +143,26 @@ function renderList(items) {
   }
 }
 
+function predictedFilename(item) {
+  if (customNames.has(item.url)) return customNames.get(item.url);
+  return renderFilename({
+    host: item.host,
+    title: item.pageTitle,
+    mimeType: item.mimeType,
+    index: item.indexInTab,
+    date: new Date(item.capturedAt || Date.now()),
+    pattern: currentPattern
+  });
+}
+
 function renderCard(item) {
   const card = document.createElement('div');
   card.className = 'blob-card';
   if (item.kind === 'mse' && !item.isFinal) card.classList.add('is-live');
+  const ready = (item.size || 0) > 0 || (item.kind === 'mse' && item.isFinal);
+  if (!ready) card.classList.add('is-pending');
 
-  // Zeile 1: Kategorie-Badge, MIME, Größe, Live-/Final-Label
+  // Zeile 1: Kategorie-Badge, MIME, Größe, Live-/Pending-/Final-Label
   const top = document.createElement('div');
   top.className = 'blob-top';
 
@@ -161,8 +179,8 @@ function renderCard(item) {
   top.appendChild(mime);
 
   const size = document.createElement('span');
-  size.className = 'blob-size';
-  size.textContent = formatSize(item.size);
+  size.className = 'blob-size' + (ready ? '' : ' pending');
+  size.textContent = ready ? formatSize(item.size) : '\u2014';
   top.appendChild(size);
 
   if (item.kind === 'mse' && !item.isFinal) {
@@ -178,6 +196,12 @@ function renderCard(item) {
     finalLabel.className = 'final-label';
     finalLabel.textContent = t('listFinal');
     top.appendChild(finalLabel);
+  } else if (!ready) {
+    const waiting = document.createElement('span');
+    waiting.className = 'waiting-label';
+    waiting.textContent = t('listWaiting');
+    waiting.title = t('listWaitingHint');
+    top.appendChild(waiting);
   }
 
   card.appendChild(top);
@@ -196,22 +220,27 @@ function renderCard(item) {
   meta.appendChild(time);
   card.appendChild(meta);
 
-  // Zeile 3: vorschaubarer Dateiname (damit man vor Download weiss, was landet)
+  // Zeile 3: editierbarer Dateiname -- Klick = Edit, Enter/Blur = speichern
+  const fnameRow = document.createElement('div');
+  fnameRow.className = 'blob-filename-row';
+
   const fname = document.createElement('div');
   fname.className = 'blob-filename';
-  const predictedName = renderFilename({
-    host: item.host,
-    title: item.pageTitle,
-    mimeType: item.mimeType,
-    index: item.indexInTab,
-    date: new Date(item.capturedAt || Date.now()),
-    pattern: currentPattern
-  });
+  const predictedName = predictedFilename(item);
   fname.textContent = predictedName;
-  fname.title = predictedName;
-  card.appendChild(fname);
+  fname.title = t('tooltipEditFilename');
+  fname.addEventListener('click', () => enterEdit(item, fname));
+  fnameRow.appendChild(fname);
 
-  // Zeile 3: Buttons
+  if (customNames.has(item.url)) {
+    const badgeCustom = document.createElement('span');
+    badgeCustom.className = 'filename-badge';
+    badgeCustom.textContent = t('listFilenameCustom');
+    fnameRow.appendChild(badgeCustom);
+  }
+  card.appendChild(fnameRow);
+
+  // Zeile 4: Action-Buttons
   const actions = document.createElement('div');
   actions.className = 'blob-actions';
 
@@ -219,6 +248,7 @@ function renderCard(item) {
   download.className = 'blob-btn primary';
   download.type = 'button';
   download.title = t('tooltipDownload');
+  download.disabled = !ready;
   download.innerHTML =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
   const dlLabel = document.createElement('span');
@@ -227,20 +257,53 @@ function renderCard(item) {
   download.addEventListener('click', () => onDownload(item, download));
   actions.appendChild(download);
 
+  const edit = document.createElement('button');
+  edit.className = 'blob-btn';
+  edit.type = 'button';
+  edit.title = t('tooltipEditFilename');
+  edit.innerHTML =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>';
+  edit.addEventListener('click', () => enterEdit(item, fname));
+  actions.appendChild(edit);
+
   const remove = document.createElement('button');
   remove.className = 'blob-btn danger';
   remove.type = 'button';
   remove.title = t('tooltipRemove');
   remove.innerHTML =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
-  const rmLabel = document.createElement('span');
-  rmLabel.textContent = t('listRemove');
-  remove.appendChild(rmLabel);
   remove.addEventListener('click', () => onRemove(item, remove));
   actions.appendChild(remove);
 
   card.appendChild(actions);
   return card;
+}
+
+function enterEdit(item, fnameEl) {
+  if (editingUrl && editingUrl !== item.url) return;
+  editingUrl = item.url;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'blob-filename-edit';
+  input.value = predictedFilename(item);
+  input.spellcheck = false;
+  fnameEl.replaceWith(input);
+  input.focus();
+  input.setSelectionRange(0, input.value.lastIndexOf('.') >= 0 ? input.value.lastIndexOf('.') : input.value.length);
+
+  function commit(keep) {
+    editingUrl = null;
+    if (keep) {
+      const val = input.value.trim();
+      if (val) customNames.set(item.url, val);
+    }
+    refresh();
+  }
+  input.addEventListener('keydown', (ev) => {
+    if (ev.key === 'Enter') { ev.preventDefault(); commit(true); }
+    else if (ev.key === 'Escape') { ev.preventDefault(); commit(false); }
+  });
+  input.addEventListener('blur', () => commit(true));
 }
 
 function cap(s) {
@@ -251,12 +314,14 @@ function cap(s) {
 async function onDownload(item, btn) {
   btn.disabled = true;
   try {
+    const customName = customNames.get(item.url);
     const resp = await new Promise((resolve) => {
       chrome.runtime.sendMessage(
         {
           type: 'POPUP_REQUEST_DOWNLOAD',
           tabId: activeTabId,
-          url: item.url
+          url: item.url,
+          customFilename: customName || null
         },
         (r) => resolve(r || { ok: false, error: 'no-response' })
       );
@@ -299,6 +364,7 @@ async function onClear() {
 }
 
 async function refresh() {
+  if (editingUrl) return; // aktiven Edit nicht wegrendern
   const state = await fetchState();
   renderList(state.items || []);
 }

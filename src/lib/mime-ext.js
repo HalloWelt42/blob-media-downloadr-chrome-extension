@@ -70,11 +70,12 @@ export const MIME_TO_EXT = {
   'application/octet-stream': 'bin'
 };
 
-/** Wildcard-Fallbacks, falls ein MIME-Type nicht exakt bekannt ist */
+/** Wildcard-Fallbacks. Leer = keine sinnvolle Endung bekannt,
+ *  dann setzt der Renderer einen generischen 'bin'-Platzhalter. */
 const WILDCARD_EXT = {
-  audio: 'audio',
-  video: 'video',
-  image: 'img',
+  audio: '',
+  video: '',
+  image: '',
   text: 'txt',
   application: 'bin'
 };
@@ -98,7 +99,11 @@ export function extForMime(mime) {
   const lower = mime.toLowerCase().split(';')[0].trim();
   if (MIME_TO_EXT[lower]) return MIME_TO_EXT[lower];
   const top = lower.split('/')[0];
-  return WILDCARD_EXT[top] || 'bin';
+  const wildcard = WILDCARD_EXT[top];
+  if (wildcard) return wildcard;
+  // Wildcard-MIME wie "audio/*" ohne konkrete Info -> lieber 'bin' als
+  // sinnfreie Endung ('audio' wird weder vom OS noch vom Player erkannt).
+  return 'bin';
 }
 
 /**

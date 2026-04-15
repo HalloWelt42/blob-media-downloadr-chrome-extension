@@ -223,5 +223,17 @@
   },
   "filenameDefaultPattern": {
     "message": "{host}-{date}-{time}-{index}.{ext}"
+  },
+  "listWaiting": {
+    "message": "Waiting"
+  },
+  "listWaitingHint": {
+    "message": "Play the media on the page so the blob is created."
+  },
+  "listFilenameCustom": {
+    "message": "Custom"
+  },
+  "tooltipEditFilename": {
+    "message": "Edit file name"
   }
 }

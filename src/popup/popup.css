@@ -238,7 +238,14 @@ main {
   font-variant-numeric: tabular-nums;
 }
 
+.blob-filename-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .blob-filename {
+  flex: 1;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
   font-size: 10px;
   color: var(--text-muted);
@@ -249,6 +256,54 @@ main {
   text-overflow: ellipsis;
   white-space: nowrap;
   border: 1px dashed var(--border-subtle);
+  cursor: text;
+  transition: border-color var(--t-fast), color var(--t-fast);
+}
+
+.blob-filename:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.blob-filename-edit {
+  flex: 1;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 10px;
+  color: var(--text);
+  background: var(--bg-base);
+  padding: 3px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--accent);
+  outline: none;
+}
+
+.filename-badge {
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--accent);
+  background: var(--accent-glow);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
+}
+
+.blob-card.is-pending {
+  opacity: 0.85;
+  border-style: dashed;
+}
+
+.blob-size.pending {
+  color: var(--text-muted);
+}
+
+.waiting-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .blob-actions {

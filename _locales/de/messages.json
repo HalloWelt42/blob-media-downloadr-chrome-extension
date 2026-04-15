@@ -8,7 +8,6 @@
   "appDefaultTitle": {
     "message": "Browser Media Blob Downloadr"
   },
-
   "popupHeaderTitle": {
     "message": "Blob Downloadr"
   },
@@ -27,7 +26,6 @@
   "popupBtnClear": {
     "message": "Liste leeren"
   },
-
   "filterAll": {
     "message": "Alle"
   },
@@ -46,7 +44,6 @@
   "filterOther": {
     "message": "Sonstige"
   },
-
   "listSource": {
     "message": "Quelle"
   },
@@ -74,7 +71,6 @@
   "listUnknownTitle": {
     "message": "Unbenannte Seite"
   },
-
   "tooltipRefresh": {
     "message": "Liste neu laden"
   },
@@ -96,7 +92,6 @@
   "tooltipGithub": {
     "message": "Projekt auf GitHub"
   },
-
   "toastDownloadStarted": {
     "message": "Download gestartet"
   },
@@ -112,7 +107,6 @@
   "toastMseNotReady": {
     "message": "Stream läuft noch, Download nutzt den aktuellen Puffer"
   },
-
   "optionsTitle": {
     "message": "Einstellungen"
   },
@@ -179,14 +173,12 @@
   "optionsResetToast": {
     "message": "Einstellungen zurückgesetzt"
   },
-
   "aboutPrivacy": {
     "message": "Datenschutz"
   },
   "aboutSource": {
     "message": "Quellcode auf GitHub"
   },
-
   "donateTitle": {
     "message": "Danke sagen"
   },
@@ -211,7 +203,6 @@
   "donateThanks": {
     "message": "Vielen Dank -- bleib neugierig."
   },
-
   "unitBytes": {
     "message": "B"
   },
@@ -224,15 +215,25 @@
   "unitGigabytes": {
     "message": "GB"
   },
-
   "kindBlob": {
     "message": "Blob"
   },
   "kindMse": {
     "message": "Stream"
   },
-
   "filenameDefaultPattern": {
     "message": "{host}-{date}-{time}-{index}.{ext}"
+  },
+  "listWaiting": {
+    "message": "Warten"
+  },
+  "listWaitingHint": {
+    "message": "Medien auf der Seite abspielen, damit der Blob entsteht."
+  },
+  "listFilenameCustom": {
+    "message": "Eigen"
+  },
+  "tooltipEditFilename": {
+    "message": "Dateinamen bearbeiten"
   }
 }

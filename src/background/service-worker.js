@@ -240,15 +240,17 @@ async function maybeAutoDownload(tabId, meta) {
   await startDownload(tabId, meta, opts);
 }
 
-async function startDownload(tabId, meta, optsMaybe) {
+async function startDownload(tabId, meta, optsMaybe, customFilename) {
   const opts = optsMaybe || (await loadOptions());
-  const filename = renderFilename({
-    host: meta.host,
-    title: meta.pageTitle,
-    mimeType: meta.mimeType,
-    index: meta.indexInTab,
-    pattern: opts.filenamePattern
-  });
+  const filename = customFilename && String(customFilename).trim()
+    ? String(customFilename).trim()
+    : renderFilename({
+      host: meta.host,
+      title: meta.pageTitle,
+      mimeType: meta.mimeType,
+      index: meta.indexInTab,
+      pattern: opts.filenamePattern
+    });
   const result = await sendToTab(tabId, {
     type: 'DOWNLOAD_BLOB',
     url: meta.url,
@@ -317,7 +319,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
           return;
         }
         const meta = map.get(msg.url);
-        const result = await startDownload(msg.tabId, meta);
+        const result = await startDownload(msg.tabId, meta, null, msg.customFilename);
         sendResponse(result);
       })();
       return true;
